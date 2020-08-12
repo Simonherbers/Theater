@@ -1,0 +1,23 @@
+﻿<UserControl
+    x:Class="MyFirstTestClient.Views.SubscriberView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ViewModels="clr-namespace:MyFirstTestClient.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MyFirstTestClient.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance ViewModels:SubscriberViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Lamp1" />
+            <TextBlock Text="{Binding Color_Lamp1}" />
+            <TextBlock Text="Lamp2" />
+            <TextBlock Text="{Binding Color_Lamp2}" />
+            <TextBlock Text="Lamp3" />
+            <TextBlock Text="{Binding Color_Lamp3}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

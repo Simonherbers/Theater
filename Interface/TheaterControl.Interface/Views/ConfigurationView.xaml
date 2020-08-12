@@ -1,0 +1,146 @@
+﻿<UserControl
+    x:Class="TheaterControl.Interface.Views.ConfigurationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Converters="clr-namespace:TheaterControl.Interface.Converters"
+    xmlns:Helper="clr-namespace:TheaterControl.Interface.Helper"
+    xmlns:ViewModels="clr-namespace:TheaterControl.Interface.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TheaterControl.Interface.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance ViewModels:ConfigurationViewModel}"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Converters:TypeToStringConverter x:Key="TypeToStringConverter" />
+        <Converters:StringToTypeConverter x:Key="StringToTypeConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding Scenes}" SelectedItem="{Binding SelectedScene}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBox Text="{Binding Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <!--<Button
+            Grid.Column="1"
+            VerticalAlignment="Bottom"
+            Command="{Binding AddSceneCommand}"
+            Content="Add Scene" />-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ListBox
+                Width="500"
+                MinHeight="200"
+                HorizontalAlignment="Left"
+                ItemsSource="{Binding SelectedScene.Devices}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Width="50"
+                                Height="50"
+                                Source="{Binding DeviceImageUri}"
+                                Stretch="Fill" />
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding Topic}" />
+                                <TextBox
+                                    IsEnabled="False"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    KeyUp="{Helper:EventBinding Command={Binding PublishCommand}}"
+                                    Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="2" Grid.Column="0">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ConnectionStatus}" Value="True">
+                                                    <Setter Property="Text" Value="Connected" />
+                                                    <Setter Property="Foreground" Value="Green" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ConnectionStatus}" Value="False">
+                                                    <Setter Property="Text" Value="Disconnected" />
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                </DataTrigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                            <!--<Button
+                                Grid.Column="2"
+                                Margin="5,0,0,0"
+                                VerticalAlignment="Center"
+                                Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=DataContext.SelectedScene.RemoveDeviceCommand}"
+                                CommandParameter="{Binding}"
+                                Content="X" />-->
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <!--Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Command="{Binding PreviousSceneCommand}"
+                    Content="Prev" />
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding PlaySceneCommand}"
+                    Content="Play" />
+                <Button
+                    Grid.Column="2"
+                    Command="{Binding NextSceneCommand}"
+                    Content="Next" />
+            </Grid>-->
+            <!--<ComboBox
+                Grid.Row="2"
+                Width="100"
+                HorizontalAlignment="Left"
+                ItemsSource="{Binding DeviceTypes, Converter={StaticResource TypeToStringConverter}}"
+                SelectedItem="{Binding SelectedScene.SelectedDeviceType, Converter={StaticResource StringToTypeConverter}}" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="0"
+                Width="150"
+                HorizontalAlignment="Left"
+                Command="{Binding SelectedScene.AddDeviceCommand}"
+                Content="Add Selected Device" />-->
+        </Grid>
+
+    </Grid>
+</UserControl>

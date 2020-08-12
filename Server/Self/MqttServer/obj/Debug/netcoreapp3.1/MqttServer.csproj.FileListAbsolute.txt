@@ -1,0 +1,15 @@
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\bin\Debug\netcoreapp3.1\MqttServer.exe
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\obj\Debug\netcoreapp3.1\MqttServer.csprojAssemblyReference.cache
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\obj\Debug\netcoreapp3.1\MqttServer.AssemblyInfoInputs.cache
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\obj\Debug\netcoreapp3.1\MqttServer.AssemblyInfo.cs
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\bin\Debug\netcoreapp3.1\MqttServer.deps.json
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\bin\Debug\netcoreapp3.1\MqttServer.runtimeconfig.json
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\bin\Debug\netcoreapp3.1\MqttServer.runtimeconfig.dev.json
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\bin\Debug\netcoreapp3.1\MqttServer.dll
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\bin\Debug\netcoreapp3.1\MqttServer.pdb
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\bin\Debug\netcoreapp3.1\MQTTnet.dll
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\obj\Debug\netcoreapp3.1\MqttServer.csproj.CoreCompileInputs.cache
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\obj\Debug\netcoreapp3.1\MqttServer.csproj.CopyComplete
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\obj\Debug\netcoreapp3.1\MqttServer.dll
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\obj\Debug\netcoreapp3.1\MqttServer.pdb
+C:\Repos\MyRepo\Theater\Server\Self\MqttServer\obj\Debug\netcoreapp3.1\MqttServer.genruntimeconfig.cache

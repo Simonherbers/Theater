@@ -1,0 +1,1 @@
+New ImageFiles need to be called the same name as the associated class. Available formats are png, jpg and svg.

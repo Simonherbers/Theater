@@ -1,0 +1,6 @@
+﻿lamp1
+lamp2
+lamp3
+lamp4
+lamp5
+music

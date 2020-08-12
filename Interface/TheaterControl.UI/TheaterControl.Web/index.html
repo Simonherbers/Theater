@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hallo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="static/app.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.1.0/mqtt.min.js"></script>
+    <script src="src/app.js" defer></script>
+</head>
+<body class="bodyClass">
+<div class="columnClass">
+    <div class="borderClass" id="sceneWrapper">
+        <div id="scenes"></div>
+        <div class="scenePlayer varElementClass">
+            <button id="scenePlayerBack" class="mdc-icon-button material-icons">skip_previous</button>
+            <button id="scenePlayerPlay" class="mdc-icon-button material-icons">play_arrow</button>
+            <button id="scenePlayerNext" class="mdc-icon-button material-icons">skip_next</button>
+        </div>
+            <div id="sceneHandle" class="handleClass"></div>
+    </div>
+    <div class="varElementClass">
+        <div id="sliderLeft"class="sliderClass">Hi</div>
+    </div>
+    <div class="borderClass" id="songWrapper">
+        <div id="songs"></div>
+        <div class="musicPlayer varElementClass">
+            <button id="musicPlayerBack" class="mdc-icon-button material-icons">skip_previous</button>
+            <button id="musicPlayerShortBack"class="mdc-icon-button material-icons">replay_5</button>
+            <button id="musicPlayerPlay" class="mdc-icon-button material-icons">play_arrow</button>
+            <button id="musicPlayerShortNext"class="mdc-icon-button material-icons">forward_5</button>
+            <button id="musicPlayerNext" class="mdc-icon-button material-icons">skip_next</button>
+        </div>
+        <div id="deviceHandle" class="handleClass"></div>
+    </div>
+    <div id="devices"></div>
+</div>
+<div class="columnClass">
+<!--    <div class="scenePlayer">-->
+<!--        <button id="scenePlayerBack" class="mdc-icon-button material-icons">skip_previous</button>-->
+<!--        <button id="scenePlayerPlay" class="mdc-icon-button material-icons">play_arrow</button>-->
+<!--        <button id="scenePlayerNext" class="mdc-icon-button material-icons">skip_next</button>-->
+<!--    </div>-->
+</div>
+</body>
+</html>
