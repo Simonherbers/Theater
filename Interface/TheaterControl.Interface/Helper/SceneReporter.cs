@@ -53,6 +53,7 @@ namespace TheaterControl.Interface.Helper
                     await mqttClient.SubscribeAsync(new MqttClientSubscribeOptionsBuilder().WithTopicFilter(Topics.SCENE_CONFIGURATION_TOPIC).Build());
                     await mqttClient.SubscribeAsync(new MqttClientSubscribeOptionsBuilder().WithTopicFilter(Topics.SCENE_CONTROL_TOPIC).Build());
                     await mqttClient.SubscribeAsync(new MqttClientSubscribeOptionsBuilder().WithTopicFilter(Topics.SONG_CONTROL_TOPIC_FROM_UI).Build());
+                    await mqttClient.SubscribeAsync(new MqttClientSubscribeOptionsBuilder().WithTopicFilter(Topics.SELECTION_TOPIC).Build());
                 });
             this.mqttClient.UseApplicationMessageReceivedHandler(this.HandleMessage);
             this.StartMonitoring();
@@ -73,6 +74,10 @@ namespace TheaterControl.Interface.Helper
             if (e.ApplicationMessage.Topic == Topics.SONG_CONTROL_TOPIC_FROM_UI)
             {
                 this.SongControlEvent?.Invoke(this, payload);
+                return;
+            }
+            if(e.ApplicationMessage.Topic == Topics.SELECTION_TOPIC && !e.ApplicationMessage.Topic.StartsWith("Scene "))
+            {
                 return;
             }
 

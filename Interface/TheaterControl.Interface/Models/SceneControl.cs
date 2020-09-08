@@ -9,6 +9,7 @@ namespace TheaterControl.Interface.Models
         Stop,
         Emergency,
         RequestScenes,
-        ScenesChanged
+        ScenesChanged,
+        SelectionChanged
     }
 }

@@ -45,7 +45,7 @@ namespace TheaterControl.Interface.ViewModels
 
         private Scene mySelectedScene;
 
-        private const string SERVER_ADDRESS = "linvm2416";
+        private const string SERVER_ADDRESS = "localhost";
 
         private const string SONG_CONTROL_TOPIC_FROM_INTERFACE = "/Theater/SongControlInterface";
 
@@ -86,7 +86,7 @@ namespace TheaterControl.Interface.ViewModels
                 this.OnPropertyChanged();
                 if (value != null)
                 {
-                    this.UpdateUISelection(Payloads.SCENE_SELECTION_CHANGED + value.Id);
+                    this.UpdateUISelection(Payloads.SCENE_SELECTION_CHANGED + (value.Id - 1));
                 }
             }
         }
@@ -142,9 +142,10 @@ namespace TheaterControl.Interface.ViewModels
             }
         }
 
-        private void EnqueueControl(string control)
+        private void EnqueueControl(string action)
         {
-            switch (control)
+            var control = action.Split(' ');
+            switch (control[0])
             {
                 case nameof(SceneControl.Next):
                     this.myPublishQueue.Enqueue(this.NextScene);
@@ -176,7 +177,12 @@ namespace TheaterControl.Interface.ViewModels
             {
                 this.SelectedScene = this.Scenes[0];
             }
-
+            if(e.StartsWith("Scene "))
+            {
+                var id = int.Parse(e.Substring(6));
+                this.EnqueueControl(SceneControl.SelectionChanged.ToString() + " " + id);
+                return;
+            }
             var control = Enum.GetNames(typeof(SceneControl)).FirstOrDefault(x => x == e);
             if (control == null)
             {
@@ -185,7 +191,14 @@ namespace TheaterControl.Interface.ViewModels
 
             this.EnqueueControl(control);
         }
-
+        private void ChangeSceneSelection(int index)
+        {
+            if(this.Scenes.IndexOf(this.SelectedScene) == index)
+            {
+                return;
+            }
+            this.SelectedScene = this.Scenes.ElementAt(index);
+        }
         private void HandleSongControlEvent(object sender, string e)
         {
             var current = this.RunningSong;

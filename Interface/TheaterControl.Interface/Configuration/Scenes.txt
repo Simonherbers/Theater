@@ -1,7 +1,7 @@
 ﻿// ID Teil von Beschreibung; Geräte; Musik; Dauer (0 = unendlich);
-01 Hermine betritt die Bühne; Lamp1 1; Lamp2 0; Music Sample.mp3; Duration 6;
-02 ; Music summer.mp3
-03
+01 Hermine betritt die Bühne; Lamp01 255; Lamp02 255; Lamp03 100; Lamp04 255; Music Sample.mp3;
+02 ;Lamp01 0; Lamp02 0; Lamp03 0; Lamp04 0; Music summer.mp3
+03 Alles
 04 Live Update
 05 
 06 Higher; Lamp3 50;

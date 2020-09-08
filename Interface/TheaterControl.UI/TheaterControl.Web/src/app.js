@@ -3,16 +3,18 @@ const REQUEST_SCENES_PAYLOAD = "RequestScenes";
 const SCENES_CHANGED_PAYLOAD = "ScenesChanged";
 const DEVICE_CHANGED_PAYLOAD = "DeviceChanged";
 const SONGS_CHANGED_PAYLOAD = "SongsChanged";
+const DEVICE_TOPIC = "/Theater/Device"
 const SCENE_CONFIGURATION_TOPIC = "/Theater/Scene";
 const SCENE_CONTROL_TOPIC = "/Theater/Control";
 const SONG_TOPIC = "/Theater/songs";
 const SELECTION_TOPIC = "/Theater/Selection";
-SONG_CONTROL_TOPIC_FROM_UI = "/Theater/SongControlUI";
+const SONG_CONTROL_TOPIC_FROM_UI = "/Theater/SongControlUI";
 
-const client  = mqtt.connect('ws://linvm2416:9001');
-client.subscribe('/Theater/Scene');
-client.subscribe('/Theater/Device');
-client.subscribe('/Theater/songs');
+const client  = mqtt.connect('ws://localhost:9001');
+client.subscribe(SCENE_CONFIGURATION_TOPIC);
+client.subscribe(DEVICE_TOPIC);
+client.subscribe(SONG_TOPIC);
+client.subscribe(SELECTION_TOPIC);
 
 let queue = [];
 let scenes = [];
@@ -23,23 +25,27 @@ let globalScenesList = [];
 
 let selectedSceneIndex = null;
 let selectedSongIndex = null;
+let runningSceneIndex = 0;
+
+
+let selectedSceneId = null;
+let selectedDeviceId = null;
+let selectedSongId = null;
 
 client.on('message', function (topic, message) {
   queue.push(topic.toString(), message.toString())
   // client.end()
 });
-
+client.on('connect', () => {
+    console.log('connected');
+    client.publish(SCENE_CONFIGURATION_TOPIC,REQUEST_SCENES_PAYLOAD)
+});
 setInterval((topic, message) => {
     if(queue.length > 0){
         handleMessage(queue.shift(), queue.shift())
     }
 }, 200);
-client.on('connect', () => {
-    console.log('connected');
-    client.publish(SCENE_CONFIGURATION_TOPIC,REQUEST_SCENES_PAYLOAD)
-});
-createScenePlayer();
-createMusicPlayer();
+
 /**
 	 * Handles messages of subsribed topics
 	 *
@@ -58,61 +64,77 @@ async function handleMessage(topic, fullMessage) {
             scenes = message;
             let sceneList = document.getElementById('scenes');
             sceneList.innerHTML = "";
-            const list = makeUL(scenes, "scene");
+            const list = makeUL(scenes, "s", selectedSceneId);
             sceneList.appendChild(list);
-            globalScenesList = list;
             break;
         case SONG_TOPIC:
             songs = message;
             let songList = document.getElementById('songs');
             songList.innerHTML = "";
-            songList.appendChild(makeUL(songs, "song"));
+            songList.appendChild(makeUL(songs, "m", selectedSongId));
             break;
         case SELECTION_TOPIC:
-            const splitPayload = message.split(' ');
+            const splitPayload = message[0].split(' ');
             if (splitPayload[0] === "Scene") {
-                selectedSceneIndex = int.Parse(splitPayload[1]) - 1;
+                if(selectedSceneId === null){
+                    break;
+                }
+                const index = parseInt(selectedSceneId.toString().substring(2));
+                if(index !== parseInt(splitPayload[1])){
+                    changeIconVisibility(splitPayload[1]);
+                }
             } else if (splitPayload[0] === "Song") {
-                selectedSongIndex = songs.indexOf(splitPayload[1])
+                //selectedSongIndex = songs.indexOf(splitPayload[1])
             }
             break;
         default:
             devices = message;
             let deviceList = document.getElementById('devices');
             deviceList.innerHTML = "";
-            deviceList.appendChild(makeUL(devices, "device"));
+            deviceList.appendChild(makeUL(devices, "d", selectedDeviceId));
             break;
     }
 }
-let selectedListItemId = null;
-function makeUL(array, idPrefix) {
+createScenePlayer(selectedSceneId);
+createMusicPlayer();
+
+// ID-Template: prefix(d,s,m) + element(l,i,t) + index
+function makeUL(array, idPrefix, selectionSafe) {
+    selectedSceneId = idPrefix + "i" + 0;
     // Create the list element:
     let list = createElementWithClass("ul", "mdc-list listClass borderClass varElementClass");
+
     for (let i = 0; i < array.length; i++) {
         // Create the list item:
         let item = createElementWithClass("li", "mdc-list-item");
         item.tabIndex = "1";
-        item.id = idPrefix + "item" + i;
+        item.id = idPrefix + "l" + i;
         let icon = document.createElement("i");
         icon.className = "mdc-icon-button material-icons";
         icon.textContent = "favorite";
-        icon.id = idPrefix + "icon" + i.toString();
+        icon.id = idPrefix + "i" + i;
+
         icon.style.visibility = "hidden";
         item.appendChild(icon);
 
-        item.onfocus = () => {
-            if(selectedListItemId !== null){
-                let lastSelection = document.getElementById(selectedListItemId);
-                lastSelection.style.visibility = "hidden";
-            }
-            let currentSelection = document.getElementById(icon.id);
-            currentSelection.style.visibility = "visible";
-            selectedListItemId = icon.id;
-        };
         // Set its contents:
         let span = createElementWithClass("span", "mdc-list-item__text");
         let span2 =createElementWithClass("span", "mdc-list-item__ripple");
         let text = document.createTextNode(array[i]);
+        //text.id = idPrefix + "t" + i;
+
+        item.onfocus = () => {
+            //if(selectedSceneId !== null){
+            //    let lastSelection = document.getElementById(selectedSceneId);
+            //    lastSelection.style.visibility = "hidden";
+            //}
+            //let currentSelection = document.getElementById(icon.id);
+            //currentSelection.style.visibility = "visible";
+            //selectionSafe = icon.id;
+            const index = parseInt(icon.id.toString().substring(2));
+            changeIconVisibility(index);
+        };
+
         span.appendChild(text);
         span.appendChild(icon);
         item.appendChild(span2);
@@ -136,14 +158,39 @@ function createElementWithClass(elementName, className){
     element.className = className;
     return element;
 }
-function createScenePlayer(){
+
+function createScenePlayer(sceneId){
     let scenePlayerBack = document.getElementById("scenePlayerBack");
     let scenePlayerPlay = document.getElementById("scenePlayerPlay");
     let scenePlayerNext = document.getElementById("scenePlayerNext");
-    scenePlayerBack.onclick = () => sendMessageToServer(SCENE_CONTROL_TOPIC, "Previous");
-    scenePlayerPlay.onclick = () => toggleIconAndPublish(scenePlayerPlay);
-    scenePlayerNext.onclick = () => sendMessageToServer(SCENE_CONTROL_TOPIC, "Next");
+    scenePlayerBack.onclick = () => {
+        sendMessageToServer(SCENE_CONTROL_TOPIC, "Previous");
+        //const currentlySelectedSceneId = parseInt(selectedSceneId.toString().substring(2));
+        //changeIconVisibility(currentlySelectedSceneId - 1)
+    };
+    scenePlayerPlay.onclick = () => {
+        sendMessageToServer(SCENE_CONTROL_TOPIC, "Play");
+        document.getElementById(selectedSceneId).focus();
+        //toggleIconAndPublish(scenePlayerPlay);
+    };
+    scenePlayerNext.onclick = () => {
+        sendMessageToServer(SCENE_CONTROL_TOPIC, "Next");
+        //const currentlySelectedSceneId = parseInt(selectedSceneId.toString().substring(2));
+        //changeIconVisibility(currentlySelectedSceneId + 1)
+    };
 }
+function changeIconVisibility(newIndex){
+    const i = parseInt(selectedSceneId.toString().substring(2));
+    if(newIndex < 0 || newIndex > scenes.length -1) {
+        return;
+    }
+    let id = parseInt(selectedSceneId.toString().substring(2));
+    document.getElementById("s" + "i" + id).style.visibility = "hidden";
+    document.getElementById("s" + "i" + newIndex).style.visibility = "visible";
+    selectedSceneId = "s" + "i" + newIndex;
+    sendMessageToServer("/Theater/Selection", "Scene " + newIndex);
+}
+
 function createMusicPlayer(){
     let musicPlayerBack = document.getElementById("musicPlayerBack");
     let musicPlayerShortBack = document.getElementById("musicPlayerShortBack");

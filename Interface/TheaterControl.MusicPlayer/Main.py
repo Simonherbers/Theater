@@ -62,6 +62,6 @@ client = mqtt.Client()
 client.on_message = on_message
 client.on_connect = on_connect
 
-client.connect("linvm2416", 1883, 60)
+client.connect("localhost", 1883, 60)
 
 client.loop_forever()
