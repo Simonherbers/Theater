@@ -1,0 +1,33 @@
+{
+  "name": "theatercontrol.ui.web",
+  "version": "1.0.0",
+  "description": "A lightweight web-based user interface",
+  "main": "index.js",
+  "dependencies": {
+    "@material/slider": "^7.0.0",
+    "express": "^4.17.1",
+    "material-components-web": "^7.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@material/ripple": "^7.0.0",
+    "autoprefixer": "^9.8.6",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.3.0",
+    "extract-loader": "^5.1.0",
+    "file-loader": "^6.1.0",
+    "postcss-loader": "^3.0.0",
+    "rollup-plugin-includepaths": "^0.2.4",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "ISC"
+}

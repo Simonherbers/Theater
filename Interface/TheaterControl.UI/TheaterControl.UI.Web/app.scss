@@ -1,0 +1,97 @@
+@use "@material/button";
+@import '@material/button';
+@import '@material/button/mdc-button';
+@import '@material/list/mdc-list';
+@import "@material/icon-button/mdc-icon-button";
+@import "@material/checkbox/mdc-checkbox";
+@import "@material/slider/mdc-slider";
+@import "@material/data-table/mdc-data-table";
+@import "@material/typography/mdc-typography";
+
+@include button.core-styles;
+
+.listClass {
+  width: auto;
+  height: 80vh;
+  overflow: hidden;
+
+  overflow-y:auto;
+}
+.borderClass{
+  border-radius: 8px;
+  border: 1px solid black;
+  margin: 20px;
+}
+
+.varElementClass {
+  position: relative;
+}
+.handleClass {
+  position: absolute;
+}
+.sliderClass {
+  cursor: se-resize;
+  position: absolute;
+}
+ul:focus{
+  outline:solid 1px green;
+}
+
+.columnClass{
+  display:flex;
+  flex-direction: row;
+}
+.scenePlayer {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 30vw;
+}
+.musicPlayer {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 30vw;
+}
+.flex {
+  display: flex;
+}
+
+.vl {
+  border-left: 1px solid black;
+  height: 60px;
+}
+
+.deviceSpanClass {
+  display: inline-block;
+  width: 50px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.div-container {
+  display: block;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+.custom{
+
+}
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 3px lightgray;
+  border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: royalblue;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: deepskyblue;
+}
