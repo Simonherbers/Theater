@@ -138,7 +138,7 @@ namespace TheaterControl.Interface.ViewModels
             clientSetupTask.Wait();
             this.UpdateUI();
             Task.Run(() => this.Publish(new TimeSpan(100)));
-            this.SelectedScene = this.Scenes.First();
+            this.SelectedScene = this.Scenes[0];
             this.RunningSong = this.SelectedScene.Devices.FirstOrDefault(x => x.Topic == Topics.MUSIC_TOPIC).Value.ToString() ?? string.Empty;
         }
 
@@ -155,23 +155,140 @@ namespace TheaterControl.Interface.ViewModels
 
             if (e.ApplicationMessage.Topic == Topics.SONG_CONTROL_TOPIC_FROM_UI)
             {
-                this.HandleSongControlEvent(this, payload);
+                if (Enum.TryParse<SongControl>(payload, out var action))
+                    this.EnqueueControl(action.ToString());
                 return;
             }
-            if (e.ApplicationMessage.Topic == Topics.SELECTION_TOPIC && payload.StartsWith("s"))
+            if (e.ApplicationMessage.Topic == Topics.SELECTION_TOPIC)
             {
-                this.HandleSceneControlEvent(this, payload);
-                return;
-            }
-            if (e.ApplicationMessage.Topic == Topics.SELECTION_TOPIC && payload.StartsWith("m"))
-            {
-                this.HandleSongControlEvent(this, SongControl.SelectionChanged.ToString() + " " + payload);
+                this.EnqueueControl(SceneControl.SelectionChanged.ToString() + " " + payload);
                 return;
             }
 
-            this.HandleSceneControlEvent(this, payload);
+            var control = Enum.GetNames(typeof(SceneControl)).FirstOrDefault(x => x == payload);
+            if (control == null)
+            {
+                return;
+            }
+
+            this.EnqueueControl(control);
+
+        }
+        private void EnqueueControl(string action)
+        {
+            if(this.SelectedScene == null)
+            {
+                this.SelectedScene = this.Scenes[0];
+            }
+            var current = this.RunningSong;
+            var payload = string.Empty;
+            var control = action.Split(' ');
+            switch (control[0])
+            {
+                case nameof(SceneControl.Next):
+                    this.myPublishQueue.Enqueue(this.NextScene);
+                    break;
+                case nameof(SceneControl.Play):
+                    this.myPublishQueue.Enqueue(this.PlayScene);
+                    break;
+                case nameof(SceneControl.Stop):
+                    this.myPublishQueue.Enqueue(this.StopMusic);
+                    break;
+                case nameof(SceneControl.Previous):
+                    this.myPublishQueue.Enqueue(this.PreviousScene);
+                    break;
+                case nameof(SceneControl.RequestScenes):
+                    this.myPublishQueue.Enqueue(this.UpdateUI);
+                    break;
+                case nameof(SceneControl.Emergency):
+                    this.myPublishQueue.Enqueue(this.EmergencyStop);
+                    break;
+                case nameof(SceneControl.ScenesChanged):
+                    this.myPublishQueue.Enqueue(this.UpdateUI);
+                    break;
+                case nameof(SceneControl.SelectionChanged):
+                    if (control[1].StartsWith("s"))
+                    {
+                        this.myPublishQueue.Enqueue(() => this.ChangeSceneSelection(control[1]));
+                    }
+                    else
+                    {
+                        //SceneReporter.SendMessageToServer(Topics.SELECTION_TOPIC, "m" + value[1], this.myMqttClient);
+                    }
+                    break;
+
+
+                case nameof(SongControl.PrevSong):
+                    this.PlayDifferentSong(current, -1);
+                    break;
+                case nameof(SongControl.RunBack):
+                    payload = $"RunBackTime {ConfigurationViewModel.LENGTH_OF_TIME_SKIP}";
+                    ConfigurationViewModel.SendMessageToServer(ConfigurationViewModel.SONG_CONTROL_TOPIC_FROM_INTERFACE, payload, this.myMqttClient);
+                    break;
+                case nameof(SongControl.Pause):
+                    payload = "TogglePause";
+                    ConfigurationViewModel.SendMessageToServer(ConfigurationViewModel.SONG_CONTROL_TOPIC_FROM_INTERFACE, payload, this.myMqttClient);
+                    break;
+                case nameof(SongControl.RunForward):
+                    payload = $"RunForwardTime {ConfigurationViewModel.LENGTH_OF_TIME_SKIP}";
+                    ConfigurationViewModel.SendMessageToServer(ConfigurationViewModel.SONG_CONTROL_TOPIC_FROM_INTERFACE, payload, this.myMqttClient);
+                    break;
+                case nameof(SongControl.NextSong):
+                    this.PlayDifferentSong(current, 1);
+                    break;
+            }
+
         }
 
+        /////done
+        //private void HandleSongControlEvent(object sender, string e)
+        //{
+        //    var current = this.RunningSong;
+
+        //    var payload = string.Empty;
+        //    var value = e.Split(' ');
+        //    switch (value[0])
+        //    {
+        //        case nameof(SongControl.PrevSong):
+        //            this.PlayDifferentSong(current, -1);
+        //            break;
+        //        case nameof(SongControl.RunBack):
+        //            payload = $"RunBackTime {ConfigurationViewModel.LENGTH_OF_TIME_SKIP}";
+        //            break;
+        //        case nameof(SongControl.Pause):
+        //            payload = "TogglePause";
+        //            break;
+        //        case nameof(SongControl.RunForward):
+        //            payload = $"RunForwardTime {ConfigurationViewModel.LENGTH_OF_TIME_SKIP}";
+        //            break;
+        //        case nameof(SongControl.NextSong):
+        //            this.PlayDifferentSong(current, 1);
+        //            break;
+        //        //case nameof(SongControl.SelectionChanged):
+        //        //    if (this.currentlySelectedSongIndex != "m" + value[1])
+        //        //    {
+        //        //        //SceneReporter.SendMessageToServer(Topics.SELECTION_TOPIC, "m" + value[1], this.myMqttClient);
+        //        //    }
+        //        //    break;
+        //    }
+
+        //    if (payload == string.Empty)
+        //    {
+        //        return;
+        //    }
+
+        //    ConfigurationViewModel.SendMessageToServer(ConfigurationViewModel.SONG_CONTROL_TOPIC_FROM_INTERFACE, payload, this.myMqttClient);
+        //}
+
+        private void EmergencyStop()
+        {
+            var topics = this.Scenes.SelectMany(x => x.Devices).Select(d => d.Topic).Distinct();
+            this.myPublishQueue.Clear();
+            foreach (var topic in topics)
+            {
+                ConfigurationViewModel.SendMessageToServer(topic, 0.ToString(), this.myMqttClient);
+            }
+        }
         private void Publish(string topic, string payload)
         {
             ConfigurationViewModel.SendMessageToServer(topic, payload, this.myMqttClient);
@@ -207,7 +324,7 @@ namespace TheaterControl.Interface.ViewModels
         {
             var uri = new Uri($@"{AppDomain.CurrentDomain.BaseDirectory}{RELATIVE_PATH_CONFIGURATION}");
             var fileSystemWatcherConfiguration = new FileSystemWatcher(uri.AbsolutePath);
-            fileSystemWatcherConfiguration.Changed += (sender, args) => { this.HandleSceneControlEvent(sender, Payloads.SCENES_CHANGED_PAYLOAD); };
+            fileSystemWatcherConfiguration.Changed += (sender, args) => { this.EnqueueControl(SceneControl.ScenesChanged.ToString()); };
             fileSystemWatcherConfiguration.EnableRaisingEvents = true;
 
             //Currently not working
@@ -216,126 +333,23 @@ namespace TheaterControl.Interface.ViewModels
             //fileSystemWatcherSongs.Changed += (sender, args) => { this.HandleSceneControlEvent(sender, Payloads.SCENES_CHANGED_PAYLOAD); };
             //fileSystemWatcherSongs.EnableRaisingEvents = true;
         }
+
         private async Task ConnectClient()
         {
             var options = new MqttClientOptionsBuilder().WithTcpServer(ConfigurationViewModel.SERVER_ADDRESS, 1883).Build();
             await this.myMqttClient.ConnectAsync(options, CancellationToken.None);
         }
-
-
-        private void EmergencyStop()
-        {
-            var topics = this.Scenes.SelectMany(x => x.Devices).Select(d => d.Topic).Distinct();
-            this.myPublishQueue.Clear();
-            foreach (var topic in topics)
-            {
-                ConfigurationViewModel.SendMessageToServer(topic, 0.ToString(), this.myMqttClient);
-            }
-        }
-
-        private void EnqueueControl(string action)
-        {
-            var control = action.Split(' ');
-            switch (control[0])
-            {
-                case nameof(SceneControl.Next):
-                    this.myPublishQueue.Enqueue(this.NextScene);
-                    break;
-                case nameof(SceneControl.Play):
-                    this.myPublishQueue.Enqueue(this.PlayScene);
-                    break;
-                case nameof(SceneControl.Stop):
-                    this.myPublishQueue.Enqueue(this.StopMusic);
-                    break;
-                case nameof(SceneControl.Previous):
-                    this.myPublishQueue.Enqueue(this.PreviousScene);
-                    break;
-                case nameof(SceneControl.RequestScenes):
-                    this.myPublishQueue.Enqueue(this.UpdateUI);
-                    break;
-                case nameof(SceneControl.Emergency):
-                    this.myPublishQueue.Enqueue(this.EmergencyStop);
-                    break;
-                case nameof(SceneControl.ScenesChanged):
-                    this.myPublishQueue.Enqueue(this.UpdateUI);
-                    break;
-                case nameof(SceneControl.SelectionChanged):
-                    this.myPublishQueue.Enqueue(() => this.ChangeSceneSelection(control[1]));
-                    break;
-            }
-        }
-
-        private void HandleSceneControlEvent(object sender, string e)
-        {
-            if (this.SelectedScene == null)
-            {
-                this.SelectedScene = this.Scenes[0];
-            }
-            if(e.StartsWith("s"))
-            {
-                var id = int.Parse(e.Substring(1));
-                this.EnqueueControl(SceneControl.SelectionChanged.ToString() + " " + id);
-                return;
-            }
-            var control = Enum.GetNames(typeof(SceneControl)).FirstOrDefault(x => x == e);
-            if (control == null)
-            {
-                return;
-            }
-
-            this.EnqueueControl(control);
-        }
-
         private void ChangeSceneSelection(string value)
         {
-            if(!int.TryParse(value, out int index))
+            if (!int.TryParse(value, out int index))
             {
                 return;
             }
-            if(this.Scenes.IndexOf(this.SelectedScene) == index)
+            if (this.Scenes.IndexOf(this.SelectedScene) == index)
             {
                 return;
             }
             this.SelectedScene = this.Scenes.ElementAt(index);
-        }
-
-        private void HandleSongControlEvent(object sender, string e)
-        {
-            var current = this.RunningSong;
-
-            var payload = string.Empty;
-            var value = e.Split(' ');
-            switch (value[0])
-            {
-                case nameof(SongControl.PrevSong):
-                    this.PlayDifferentSong(current, -1);
-                    break;
-                case nameof(SongControl.RunBack):
-                    payload = $"RunBackTime {ConfigurationViewModel.LENGTH_OF_TIME_SKIP}";
-                    break;
-                case nameof(SongControl.Pause):
-                    payload = "TogglePause";
-                    break;
-                case nameof(SongControl.RunForward):
-                    payload = $"RunForwardTime {ConfigurationViewModel.LENGTH_OF_TIME_SKIP}";
-                    break;
-                case nameof(SongControl.NextSong):
-                    this.PlayDifferentSong(current, 1);
-                    break;
-                case nameof(SongControl.SelectionChanged):
-                    if(this.currentlySelectedSongIndex != "m" + value[1])
-                    {
-                       //SceneReporter.SendMessageToServer(Topics.SELECTION_TOPIC, "m" + value[1], this.myMqttClient);
-                    }
-                    break;
-            }
-
-            if (payload == string.Empty)
-            {
-                return;
-            }
-
-            ConfigurationViewModel.SendMessageToServer(ConfigurationViewModel.SONG_CONTROL_TOPIC_FROM_INTERFACE, payload, this.myMqttClient);
         }
 
         private void NextScene()
