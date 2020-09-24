@@ -127,7 +127,6 @@
     <Compile Include="Helper\IDevice.cs" />
     <Compile Include="Helper\RelayCommand.cs" />
     <Compile Include="Helper\FileReadHelper.cs" />
-    <Compile Include="Helper\SceneReporter.cs" />
     <Compile Include="Models\SceneControl.cs" />
     <Compile Include="Models\Devices\Fog.cs" />
     <Compile Include="Models\Devices\Lamp.cs" />
