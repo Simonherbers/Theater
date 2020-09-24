@@ -1,4 +1,6 @@
 const autoprefixer = require('autoprefixer');
+const glob = require('glob');
+const path = require('path');
 module.exports = [{
     entry: ['./src/app.scss', './src/app.js'],
     output: {
@@ -34,7 +36,11 @@ module.exports = [{
                 // See https://github.com/webpack-contrib/sass-loader/issues/804
                 webpackImporter: false,
                 sassOptions: {
-                  includePaths: ['./node_modules'],
+                  //includePaths: ['./node_modules'],
+                  includePaths: ['node_modules', 'node_modules/@material/*']
+                      .map((d) => path.join(__dirname, d))
+                      .map((g) => glob.sync(g))
+                      .reduce((a, c) => a.concat(c), [])
                 },
               },
             }

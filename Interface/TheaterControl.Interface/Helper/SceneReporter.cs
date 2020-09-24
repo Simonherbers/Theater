@@ -76,8 +76,14 @@ namespace TheaterControl.Interface.Helper
                 this.SongControlEvent?.Invoke(this, payload);
                 return;
             }
-            if(e.ApplicationMessage.Topic == Topics.SELECTION_TOPIC && !e.ApplicationMessage.Topic.StartsWith("Scene "))
+            if (e.ApplicationMessage.Topic == Topics.SELECTION_TOPIC && payload.StartsWith("s"))
             {
+                this.SceneControlEvent?.Invoke(this, payload);
+                return;
+            }
+            if (e.ApplicationMessage.Topic == Topics.SELECTION_TOPIC && payload.StartsWith("m"))
+            {
+                this.SongControlEvent?.Invoke(this, SongControl.SelectionChanged.ToString() + " " + payload.Substring(1));
                 return;
             }
 

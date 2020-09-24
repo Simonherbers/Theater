@@ -63,7 +63,9 @@ namespace TheaterControl.Interface.ViewModels
             set
             {
                 this.myRunningSong = value;
-                this.UpdateUISelection(Payloads.SONG_SELECTION_CHANGED + value);
+                var index = this.songList.IndexOf(this.songList.Find(x => x == value));
+                this.UpdateUISelection(Payloads.SONG_SELECTION_CHANGED + index);
+                this.currentlySelectedSongIndex = Payloads.SONG_SELECTION_CHANGED + index;
             }
         }
 
@@ -86,11 +88,14 @@ namespace TheaterControl.Interface.ViewModels
                 this.OnPropertyChanged();
                 if (value != null)
                 {
-                    this.UpdateUISelection(Payloads.SCENE_SELECTION_CHANGED + (value.Id - 1));
+                    var payload = Payloads.SCENE_SELECTION_CHANGED + (value.Id - 1);
+                    this.UpdateUISelection(payload);
+                    this.currentlySelectedSceneIndex = payload;
                 }
             }
         }
-
+        private string currentlySelectedSceneIndex;
+        private string currentlySelectedSongIndex;
         #endregion
 
         #region Events
@@ -132,6 +137,7 @@ namespace TheaterControl.Interface.ViewModels
             await this.myMqttClient.ConnectAsync(options, CancellationToken.None);
         }
 
+
         private void EmergencyStop()
         {
             var topics = this.Scenes.SelectMany(x => x.Devices).Select(d => d.Topic).Distinct();
@@ -168,6 +174,16 @@ namespace TheaterControl.Interface.ViewModels
                 case nameof(SceneControl.ScenesChanged):
                     this.myPublishQueue.Enqueue(this.UpdateUI);
                     break;
+                
+                    //The Website receives the value already --> no need to ping pong it back from the interface.
+
+
+                //case nameof(SceneControl.SelectionChanged):
+                //    if(this.currentlySelectedSceneIndex != "s" + control[1])
+                //    {
+                //        this.myPublishQueue.Enqueue(() => this.ChangeSceneSelection(int.Parse(control[1])));
+                //    }
+                //    break;
             }
         }
 
@@ -177,9 +193,9 @@ namespace TheaterControl.Interface.ViewModels
             {
                 this.SelectedScene = this.Scenes[0];
             }
-            if(e.StartsWith("Scene "))
+            if(e.StartsWith("s"))
             {
-                var id = int.Parse(e.Substring(6));
+                var id = int.Parse(e.Substring(1));
                 this.EnqueueControl(SceneControl.SelectionChanged.ToString() + " " + id);
                 return;
             }
@@ -204,7 +220,8 @@ namespace TheaterControl.Interface.ViewModels
             var current = this.RunningSong;
 
             var payload = string.Empty;
-            switch (e)
+            var value = e.Split(' ');
+            switch (value[0])
             {
                 case nameof(SongControl.PrevSong):
                     this.PlayDifferentSong(current, -1);
@@ -220,6 +237,12 @@ namespace TheaterControl.Interface.ViewModels
                     break;
                 case nameof(SongControl.NextSong):
                     this.PlayDifferentSong(current, 1);
+                    break;
+                case nameof(SongControl.SelectionChanged):
+                    if(this.currentlySelectedSongIndex != "m" + value[1])
+                    {
+                       //SceneReporter.SendMessageToServer(Topics.SELECTION_TOPIC, "m" + value[1], this.myMqttClient);
+                    }
                     break;
             }
 
@@ -256,10 +279,14 @@ namespace TheaterControl.Interface.ViewModels
             var index = this.songList.IndexOf(currentSong);
             if (index < 0)
             {
-                return;
+                return; //?
             }
+            //if (index + toSkip > this.songList.Count || index + toSkip < 0)
+            //{
+            //    return;
+            //}
 
-            if ((index == 0 && toSkip < 0) || (index == this.songList.IndexOf(this.songList.Last()) && toSkip > 0))
+            if ((index == 0 && toSkip < 0) || (index == this.songList.Count - 1 && toSkip > 0))
             {
                 return;
             }

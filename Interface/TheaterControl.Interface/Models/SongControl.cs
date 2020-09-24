@@ -12,6 +12,7 @@ namespace TheaterControl.Interface.Models
         RunBack,
         Pause,
         RunForward,
-        NextSong
+        NextSong,
+        SelectionChanged
     }
 }

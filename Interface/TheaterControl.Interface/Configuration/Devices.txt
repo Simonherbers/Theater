@@ -4,3 +4,14 @@ lamp03
 lamp04
 lamp05
 music
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k

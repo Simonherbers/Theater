@@ -1,15 +1,17 @@
-@use '@material/button';
-@use '@material/button/mdc-button';
-@use '@material/list';
-@use "@material/icon-button";
-@include icon-button.core-styles;
-@include list.core-styles;
-@include list.core-styles;
-
+@import '@material/button';
+@import '@material/button/mdc-button';
+@import '@material/list/mdc-list';
+@import "@material/icon-button/mdc-icon-button";
+@import "@material/checkbox/mdc-checkbox";
+@import "@material/slider/mdc-slider";
+@import "@material/data-table/mdc-data-table";
+@import "@material/typography/mdc-typography";
+@import '@material/theme';
 .listClass {
   width: auto;
   height: 80vh;
   overflow: hidden;
+
   overflow-y:auto;
 }
 .borderClass{
@@ -17,6 +19,7 @@
   border: 1px solid black;
   margin: 20px;
 }
+
 .varElementClass {
   position: relative;
 }
@@ -30,11 +33,7 @@
 ul:focus{
   outline:solid 1px green;
 }
-.bodyClass {
-  margin: 0;
-  height: 100%;
-  overflow: hidden;
-}
+
 .columnClass{
   display:flex;
   flex-direction: row;
@@ -51,6 +50,25 @@ ul:focus{
   margin-right: 20px;
   width: 30vw;
 }
+.flex {
+  display: flex;
+}
+
+.vl {
+  border-left: 1px solid black;
+  height: 60px;
+}
+
+.deviceSpanClass {
+  display: inline-block;
+  width: 50px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.div-container {
+  display: block;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

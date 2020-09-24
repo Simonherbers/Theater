@@ -1,97 +1,97 @@
-@use "@material/button";
-@import '@material/button';
-@import '@material/button/mdc-button';
-@import '@material/list/mdc-list';
-@import "@material/icon-button/mdc-icon-button";
-@import "@material/checkbox/mdc-checkbox";
-@import "@material/slider/mdc-slider";
-@import "@material/data-table/mdc-data-table";
-@import "@material/typography/mdc-typography";
+@use "@material/theme" with (
+  $primary: #128fcd,
+  $secondary: #15bede,
+  $background: #ffffff,
+);
+@use "material-components-web";
 
-@include button.core-styles;
-
-.listClass {
-  width: auto;
-  height: 80vh;
-  overflow: hidden;
-
-  overflow-y:auto;
-}
-.borderClass{
-  border-radius: 8px;
-  border: 1px solid black;
-  margin: 20px;
-}
-
-.varElementClass {
-  position: relative;
-}
-.handleClass {
-  position: absolute;
-}
-.sliderClass {
-  cursor: se-resize;
-  position: absolute;
-}
-ul:focus{
-  outline:solid 1px green;
-}
-
-.columnClass{
-  display:flex;
-  flex-direction: row;
-}
-.scenePlayer {
-  margin-bottom: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  width: 30vw;
-}
-.musicPlayer {
-  margin-bottom: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  width: 30vw;
-}
-.flex {
-  display: flex;
-}
-
-.vl {
-  border-left: 1px solid black;
-  height: 60px;
-}
-
-.deviceSpanClass {
-  display: inline-block;
-  width: 50px;
-  margin-right: 10px;
-  margin-left: 10px;
-}
-.div-container {
-  display: block;
-}
-
-/* width */
+//width
 ::-webkit-scrollbar {
   width: 10px;
 }
 .custom{
 
 }
-/* Track */
+//Track
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 3px lightgray;
   border-radius: 8px;
 }
 
-/* Handle */
+//Handle
 ::-webkit-scrollbar-thumb {
-  background: royalblue;
+  background:  #128fcd;
   border-radius: 8px;
 }
 
-/* Handle on hover */
+//Handle on hover
 ::-webkit-scrollbar-thumb:hover {
-  background: deepskyblue;
+  background: #15bede;
 }
+
+.containers {
+  display: flex;
+  flex-direction: row;
+  //margin-bottom: 5px;
+}
+.overallContainers{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+  max-width: 100%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5px;
+  width: 100%;
+  align-items: center;
+  overflow: hidden;
+}
+
+//.overallContainer {
+//  display: flex;
+//  flex-direction: column;
+//  width: 100%;
+//  align-items: center;
+//}
+
+.container-controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.player {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.listClass {
+  overflow: hidden;
+  overflow-y:auto;
+  width: 100%;
+}
+
+.cardClass{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.cardClass.outerCard {
+  padding: 20px;
+}
+.fabButton{
+  margin: 3px;
+}
+
+.vl {
+  border-left: 1px solid black;
+  height: 300px;
+}
+

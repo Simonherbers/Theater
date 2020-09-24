@@ -13,7 +13,7 @@ namespace TheaterControl.Interface.Constants
         public const string SONGS_CHANGED_PAYLOAD = "SongsChanged";
         public const string MUSIC_STOP_PAYLOAD = "0";
 
-        public const string SCENE_SELECTION_CHANGED = "Scene ";
-        public const string SONG_SELECTION_CHANGED = "Song ";
+        public const string SCENE_SELECTION_CHANGED = "s";
+        public const string SONG_SELECTION_CHANGED = "m";
     }
 }

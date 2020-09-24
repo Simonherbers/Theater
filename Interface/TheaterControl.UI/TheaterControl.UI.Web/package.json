@@ -4,7 +4,12 @@
   "description": "A lightweight web-based user interface",
   "main": "index.js",
   "dependencies": {
+    "@material/button": "^7.0.0",
+    "@material/dialog": "^7.0.0",
+    "@material/fab": "^7.0.0",
+    "@material/icon-button": "^7.0.0",
     "@material/slider": "^7.0.0",
+    "@material/theme": "^7.0.0",
     "express": "^4.17.1",
     "material-components-web": "^7.0.0"
   },
@@ -12,6 +17,7 @@
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "@material/ripple": "^7.0.0",
+    "@material/textfield": "^7.0.0",
     "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.3.0",
