@@ -3,18 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="2fdb860a-13aa-41c5-bb6d-a1a04027150e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/.vs/TheaterControl.Interface/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/.vs/TheaterControl.Interface/v16/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/Helper/SceneReporter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/TheaterControl.Interface.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/TheaterControl.Interface.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/ViewModels/ConfigurationViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/ViewModels/ConfigurationViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/bin/Debug/TheaterControl.Interface.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/bin/Debug/TheaterControl.Interface.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/bin/Debug/TheaterControl.Interface.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/bin/Debug/TheaterControl.Interface.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface_MarkupCompile.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface_MarkupCompile.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface_MarkupCompile.i.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface_MarkupCompile.i.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface_MarkupCompile.i.lref" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,27 +88,31 @@
       <screen x="1920" y="0" width="1920" height="1042" />
     </state>
     <state x="2549" y="303" key="EditFileWatcherDialog/1920.0.1920.1042/0.0.1536.834@1920.0.1920.1042" timestamp="1600679875598" />
-    <state width="1899" height="352" key="GridCell.Tab.0.bottom" timestamp="1600775735827">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1515" height="128" key="GridCell.Tab.0.bottom" timestamp="1600956955778">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="128" key="GridCell.Tab.0.bottom/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1600956955778" />
     <state width="1899" height="352" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032256" />
     <state width="1899" height="133" key="GridCell.Tab.0.bottom/1920.0.1920.1042/0.0.1536.834@1920.0.1920.1042" timestamp="1600688764286" />
     <state width="1899" height="352" key="GridCell.Tab.0.bottom/1920.0.1920.1050/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600775735827" />
-    <state width="1899" height="352" key="GridCell.Tab.0.center" timestamp="1600775735826">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1515" height="128" key="GridCell.Tab.0.center" timestamp="1600956955778">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="128" key="GridCell.Tab.0.center/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1600956955778" />
     <state width="1899" height="352" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032256" />
     <state width="1899" height="133" key="GridCell.Tab.0.center/1920.0.1920.1042/0.0.1536.834@1920.0.1920.1042" timestamp="1600688764285" />
     <state width="1899" height="352" key="GridCell.Tab.0.center/1920.0.1920.1050/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600775735826" />
-    <state width="1899" height="352" key="GridCell.Tab.0.left" timestamp="1600775735826">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1515" height="128" key="GridCell.Tab.0.left" timestamp="1600956955777">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="128" key="GridCell.Tab.0.left/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1600956955777" />
     <state width="1899" height="352" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032256" />
     <state width="1899" height="133" key="GridCell.Tab.0.left/1920.0.1920.1042/0.0.1536.834@1920.0.1920.1042" timestamp="1600688764285" />
     <state width="1899" height="352" key="GridCell.Tab.0.left/1920.0.1920.1050/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600775735826" />
-    <state width="1899" height="352" key="GridCell.Tab.0.right" timestamp="1600775735826">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1515" height="128" key="GridCell.Tab.0.right" timestamp="1600956955778">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="128" key="GridCell.Tab.0.right/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1600956955778" />
     <state width="1899" height="352" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032256" />
     <state width="1899" height="133" key="GridCell.Tab.0.right/1920.0.1920.1042/0.0.1536.834@1920.0.1920.1042" timestamp="1600688764286" />
     <state width="1899" height="352" key="GridCell.Tab.0.right/1920.0.1920.1050/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600775735826" />

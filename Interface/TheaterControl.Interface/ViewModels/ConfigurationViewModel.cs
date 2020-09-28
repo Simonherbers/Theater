@@ -209,7 +209,7 @@ namespace TheaterControl.Interface.ViewModels
                 case nameof(SceneControl.SelectionChanged):
                     if (control[1].StartsWith("s"))
                     {
-                        this.myPublishQueue.Enqueue(() => this.ChangeSceneSelection(control[1]));
+                        this.myPublishQueue.Enqueue(() => this.ChangeSceneSelection(control[1].Substring(1)));
                     }
                     else
                     {
