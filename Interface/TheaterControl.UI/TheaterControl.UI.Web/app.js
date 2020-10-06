@@ -29,11 +29,7 @@ const DEVICE_PREFIX = "d";
 const DEVICE_LIST_ROW_LENGTH = 8;
 const DEVICE_LIST_CONTROL_ONCLICK_VALUE_CHANGE = 10;
 
-const client  = mqtt.connect('ws://localhost:9001');
-client.subscribe(SCENE_CONFIGURATION_TOPIC);
-client.subscribe(DEVICE_TOPIC);
-client.subscribe(SONG_TOPIC);
-client.subscribe(SELECTION_TOPIC);
+const client  = mqtt.connect('ws://localhost:9001', {clean : true});
 
 let queue = [];
 let scenes = [];
@@ -41,7 +37,6 @@ let devices = [];
 let songs = [];
 
 let selectedSceneId = "si0";
-let selectedDeviceId = "di0";
 let selectedSongId = "mi0";
 
 let configurationButton = document.getElementById("configuration");
@@ -56,9 +51,16 @@ client.on('message', function (topic, message) {
     queue.push(value)
 });
 client.on('connect', () => {
+    client.subscribe(SCENE_CONFIGURATION_TOPIC);
+    client.subscribe(DEVICE_TOPIC);
+    client.subscribe(SONG_TOPIC);
+    client.subscribe(SELECTION_TOPIC);
     console.log('connected');
     sendMessageToServer(SCENE_CONFIGURATION_TOPIC,REQUEST_SCENES_PAYLOAD)
 });
+client.on('disconnect', () => console.log("disconnected"));
+client.on('reconnect', () => console.log("reconnected"));
+
 setInterval((topic, message) => {
     if(queue.length > 0){
         const value = queue.shift();
@@ -101,7 +103,6 @@ function handleMessage(topic, fullMessage) {
             let deviceList = document.getElementById("devices");
             deviceList.innerHTML = "";
             deviceList.appendChild(createItemList(devices, DEVICE_PREFIX));
-            changeIconVisibility(DEVICE_PREFIX, 0, 0, devices);
             break;
 
         case SELECTION_TOPIC:
@@ -126,21 +127,21 @@ function subscribeToDeviceTopics(devices){
     for (let i = 0; i < devices.length; i++) {
         const topic = "/Theater/" + devices[i];
         client.subscribe(topic);
-        console.log(topic);
     }
 }
 
 function changeLayout(selection){
     switch (selection) {
         case 1:
-            reOrderElements("scenes", "songs", "devices")
+            reOrderElements("scenes", "songs", "devices");
             break;
         case 2:
-            reOrderElements("devices", "scenes", "songs")
+            reOrderElements("devices", "scenes", "songs");
             break;
     }
 }
 function changeListItemSelection(prefix, array, value){
+    console.log(value);
     const oldIndex = parseInt(getSelectedItemIdInList(prefix).toString().substring(2));
     if(oldIndex !== parseInt(value)) {
         const newId = changeIconVisibility(prefix, oldIndex, value, array);
@@ -162,7 +163,7 @@ function makeUL(array, idPrefix) {
         item.id = idPrefix + "l" + i;
 
         //Icon
-        let icon = createElementWithClass("i", "mdc-icon-button material-icons mdc-theme--secondary")
+        let icon = createElementWithClass("i", "mdc-icon-button material-icons mdc-theme--secondary");
         icon.textContent = "favorite";
         icon.id = idPrefix + "i" + i;
         icon.style.visibility = "hidden";
@@ -193,16 +194,16 @@ function makeUL(array, idPrefix) {
     list = encapsulateElementInNewElement(list,"div", "mdc-card--outlined cardClass container innerCard");//////
     const h = screen.height * 0.7;
     const w = screen.width * 0.44;
-    list.style.width = w + "px"
-    list.style.height = h + "px"
-    list.style.maxWidth = w + "px"
-    list.style.maxHeight = h + "px"
+    list.style.width = w + "px";
+    list.style.height = h + "px";
+    list.style.maxWidth = w + "px";
+    list.style.maxHeight = h + "px";
     return list;
 }
 
 function reOrderElements(first, second, third){
     let container = document.getElementById("overallContainer");
-    container.className = "overallContainers"
+    container.className = "overallContainers";
 
     let list = [];
     list[0] =  document.getElementById(first).cloneNode(true);
@@ -217,7 +218,7 @@ function reOrderElements(first, second, third){
 }
 
 function createItemList(array, prefix){
-    let card = createElementWithClass("div", "mdc-card--outlined cardClass outerCard")
+    let card = createElementWithClass("div", "mdc-card--outlined cardClass outerCard");
 
     let list = prefix === DEVICE_PREFIX ? makeDeviceList(array) : makeUL(array, prefix);
     let actions = prefix === "s" ? createScenePlayer() : prefix === SONG_PREFIX ? createMusicPlayer() : document.createElement("div");
@@ -227,7 +228,7 @@ function createItemList(array, prefix){
     card.appendChild(title);
     card.appendChild(list);
 
-    let player = createElementWithClass("div", "player")
+    let player = createElementWithClass("div", "player");
     player.appendChild(actions);
 
     if(prefix === SCENE_PREFIX){
@@ -251,19 +252,38 @@ function createItemList(array, prefix){
  * @return {any}
  */
 function makeDeviceList(array) {
-    let container = createElementWithClass("div", "")
+    let devicePanel = createElementWithClass("div", "sliderContainer");
+
+    let master = createElementWithClass("div", "");
+
+    let masterLabel = document.createTextNode("Master");
+    masterLabel = encapsulateElementInNewElement(masterLabel, "h1", "mdc-typography--headline4");
+    masterLabel = encapsulateElementInNewElement(masterLabel, "div", "container-title");
+
+    master.appendChild(masterLabel);
+
+    let inputContainer = createInputField("masterInput", "master");
+    master.appendChild(inputContainer);
+
+    let masterSlider = createDefaultSlider(0.3, inputContainer, "masterSlider");
+    master.appendChild(masterSlider);
+    devicePanel.appendChild(master);
+
+    let divider = createHorizontalDivider(0.5);
+    devicePanel.appendChild(divider);
+
+    let container = createElementWithClass("div", "");
     let count = 0;
 
-    const rows = Math.round(array.length / DEVICE_LIST_ROW_LENGTH)
+    const rows = Math.round(array.length / DEVICE_LIST_ROW_LENGTH);
     for (let i = 0; i < rows; i++) {
 
-        let row = createElementWithClass("div", "containers")
+        let row = createElementWithClass("div", "containers");
 
         for (let j = 0; j < DEVICE_LIST_ROW_LENGTH; j++) {
-            let container = createElementWithClass("div", "container")
+            let container = createElementWithClass("div", "container");
             const width = Math.floor(100 / DEVICE_LIST_ROW_LENGTH);
             container.style.width = width + "%";
-            console.log(array[count])
             if(array[count] !== undefined){
 
                 //device name
@@ -274,56 +294,40 @@ function makeDeviceList(array) {
                 //tooltip?
 
                 //outlined text field
-                let label = createElementWithClass("label", "mdc-text-field mdc-text-field--outlined");
-                let inp = createElementWithClass("input", "mdc-text-field__input");
-                inp.id = "my-label-id-" + (j + DEVICE_LIST_ROW_LENGTH * i);
-                inp.value = 0;
-                inp.name = deviceName;
-                let notchedOutline = createElementWithClass("span", "mdc-notched-outline");
-                let outlineLead = createElementWithClass("span", "mdc-notched-outline__leading")
-                let outlineNotch = createElementWithClass("span", "mdc-notched-outline__notch")
-                let outlineTrailing = createElementWithClass("span", "mdc-notched-outline__trailing");
-
-                const index = j + i * DEVICE_LIST_ROW_LENGTH
-                inp.onkeyup = () => sendMessageToServer("/Theater/" + array[index], inp.value);
-
-                label.appendChild(inp);
-                notchedOutline.appendChild(outlineLead);
-                notchedOutline.appendChild(outlineNotch);
-                notchedOutline.appendChild(outlineTrailing);
-
-                label.appendChild(notchedOutline);
+                const index = j + i * DEVICE_LIST_ROW_LENGTH;
+                let label = createInputField("my-label-id-" + index, deviceName);
+                //let input = document.getElementById("my-label-id-" + index);
 
                 //control buttons
                 let controls = createElementWithClass("div", "container-controls");
 
-                let increaseButton = createFabButton("expand_less");
-                let decreaseButton = createFabButton("expand_more");
+                //let increaseButton = createFabButton("expand_less");
+                //let decreaseButton = createFabButton("expand_more");
 
 
-                let func = param => {
-                    const value = (parseInt(inp.value) + DEVICE_LIST_CONTROL_ONCLICK_VALUE_CHANGE * param).toString();
-                    sendMessageToServer("/Theater/" + array[index], value);
-                    return value;
-                }
+                //let func = param => {
+                //    const value = (parseInt(label.value) + DEVICE_LIST_CONTROL_ONCLICK_VALUE_CHANGE * param).toString();
+                //    sendMessageToServer("/Theater/" + array[index], value);
+                //    return value;
+                //};
 
-                holdButton(increaseButton, () => func(1), 600, 1.2);
-                holdButton(decreaseButton, () => func(-1), 600, 1.2);
+                //holdButton(increaseButton, () => func(1), 600, 1.2);
+                //holdButton(decreaseButton, () => func(-1), 600, 1.2);
 
-                controls.appendChild(increaseButton);
-                controls.appendChild(decreaseButton);
-
+                //controls.appendChild(increaseButton);
+                //controls.appendChild(decreaseButton);
+                controls.appendChild(createDefaultSlider(0.1, label, array[index]));
                 container.appendChild(text);
                 container.appendChild(label);
                 container.appendChild(controls);
             }
             count++;
 
-            row.appendChild(container)
+            row.appendChild(container);
 
             if(count !== (DEVICE_LIST_ROW_LENGTH * (i + 1)))
             {
-                let divider = createElementWithClass("div", "vl");
+                let divider = createHorizontalDivider(0.2);
                 row.appendChild(divider);
             }
         }
@@ -332,10 +336,41 @@ function makeDeviceList(array) {
             container.appendChild(createElementWithClass("hr", i));
         }
     }
-    container = encapsulateElementInNewElement(container, "div", "mdc-card--outlined cardClass");
+    devicePanel.appendChild(container);
+    devicePanel = encapsulateElementInNewElement(devicePanel, "div", "mdc-card--outlined cardClass");
+    devicePanel.id = "deviceCard";
 
-    container.id = "deviceCard";
-    return container;
+    return devicePanel;
+}
+function createHorizontalDivider(factor){
+    let divider = document.createElement("div");
+    divider.style.borderLeft = "1px solid black";
+    //divider.style.height = height + "px";
+    divider.style.height = "-webkit-fill-available";
+    divider.style.maxHeight = (screen.availWidth * factor).toString() + "px";
+
+    return divider;
+}
+function createInputField(id, name){
+    let label = createElementWithClass("label", "mdc-text-field mdc-text-field--outlined");
+    let inp = createElementWithClass("input", "mdc-text-field__input");
+    inp.id = id;
+    inp.value = 0;
+    inp.name = name;
+    if(name !== "master"){
+        inp.onkeyup = () => sendMessageToServer("/Theater/" + name, inp.value);
+    }
+    let notchedOutline = createElementWithClass("span", "mdc-notched-outline");
+    let outlineLead = createElementWithClass("span", "mdc-notched-outline__leading");
+    let outlineNotch = createElementWithClass("span", "mdc-notched-outline__notch");
+    let outlineTrailing = createElementWithClass("span", "mdc-notched-outline__trailing");
+    label.appendChild(inp);
+    notchedOutline.appendChild(outlineLead);
+    notchedOutline.appendChild(outlineNotch);
+    notchedOutline.appendChild(outlineTrailing);
+
+    label.appendChild(notchedOutline);
+    return label;
 }
 function holdButton(btn, action, start, speedup) {
     const initialStartValue = start;
@@ -354,14 +389,14 @@ function holdButton(btn, action, start, speedup) {
             start = 50;
         }
         return t;
-    }
+    };
 
     btn.onmousedown = function() {
         t = repeat();
-    }
+    };
 
     btn.onmouseup = function () {
-        clearTimeout(t)
+        clearTimeout(t);
         start = initialStartValue;
     }
 }
@@ -391,14 +426,14 @@ function createSlider(){
 
     let thumbContainer = createElementWithClass("div", "mdc-slider__thumb-container");
 
-    let pin = createElementWithClass("div", "mdc-slider__pin")
+    let pin = createElementWithClass("div", "mdc-slider__pin");
 
-    let thumb = document.createElementNS("http://www.w3.org/2000/svg", "svg")
-    thumb.setAttribute("class", "mdc-slider__thumb")
+    let thumb = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    thumb.setAttribute("class", "mdc-slider__thumb");
     thumb.setAttribute("width", "21");
     thumb.setAttribute("height", "21");
 
-    let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+    let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circle.setAttribute("cx", "10.5");
     circle.setAttribute("cy", "10.5");
     circle.setAttribute("r", "7.875");
@@ -407,8 +442,8 @@ function createSlider(){
     let focusRing = createElementWithClass("div", "mdc-slider__focus-ring");
 
     trackContainer.appendChild(createElementWithClass("div", "mdc-slider__track"));
-    pin.appendChild(createElementWithClass("span", "mdc-slider__pin-value-marker"))
-    thumbContainer.appendChild(pin)
+    pin.appendChild(createElementWithClass("span", "mdc-slider__pin-value-marker"));
+    thumbContainer.appendChild(pin);
     thumb.appendChild(circle);
     thumbContainer.appendChild(thumb);
     thumbContainer.appendChild(focusRing);
@@ -418,15 +453,41 @@ function createSlider(){
     return slider;
 }
 
+function createDefaultSlider(factor, input, id){
+    let slider = createElementWithClass("INPUT", "slider" );
+    slider.setAttribute("type", "range");
+    slider.orientation = "vertical";
+    //slider.style.height = (parseInt(height.toString().substring(0, height.toString() - (height.toString()[height.toString().length - 1] === "%" ? 1 : 2))) * 0.45).toString() + "px";
+    slider.style.height = "-webkit-fill-available";
+    slider.style.maxHeight = (screen.availWidth * factor).toString() + "px";
+    //slider.style.height = "100%";
+    //slider.style.maxHeight = (screen.availWidth * 0.1).toString() + "px";
+    slider.min = 0;
+    slider.max = 100;
+    slider.setAttribute("value","0");
+    let newid = "slider" + id;
+    slider.setAttribute("id", newid);
+    slider.onmouseup = () => {
+        let sl = document.getElementById(newid);
+        sendMessageToServer("/Theater/" + id, sl.value);
+        input.value = sl.value;
+    };
+
+    slider = encapsulateElementInNewElement(slider, "div", "sliderContainer");
+    //slider.style.height = (parseInt(height.toString().substring(0, height.toString() - (height.toString()[height.toString().length - 1] === "%" ? 1 : 2))) * 0.45).toString() + "px";
+    return slider;
+}
+
 function createFabButton(iconName){
-    let button = createElementWithClass("button", "mdc-fab fabButton")
+    let button = createElementWithClass("button", "mdc-fab fabButton");
     const div = createElementWithClass("div", "mdc-fab__ripple");
-    let span = createElementWithClass("pan", "mdc-fab__icons material-icons");
+    let span = createElementWithClass("span", "mdc-fab__icons material-icons");
     span.innerHTML = iconName;
     button.appendChild(div);
     button.appendChild(span);
     return button;
 }
+
 function setSelectedItemIdInList(id){
     const prefix = id.toString()[0];
     switch(prefix){
@@ -436,9 +497,6 @@ function setSelectedItemIdInList(id){
         case SONG_PREFIX:
             selectedSongId = id;
             break;
-        case DEVICE_PREFIX:
-            selectedDeviceId = id;
-            break;
     }
 }
 function getSelectedItemIdInList(prefix){
@@ -447,8 +505,6 @@ function getSelectedItemIdInList(prefix){
             return selectedSceneId;
         case SONG_PREFIX:
             return selectedSongId;
-        case DEVICE_PREFIX:
-            return selectedDeviceId;
     }
 }
 
@@ -461,19 +517,23 @@ function createElementWithClass(elementName, className){
 function createScenePlayer(){
     let actions = createElementWithClass("sceneActions", "playerActionsClass");
 
-    let scenePlayerBack = createFabButton("skip_previous")
-    let scenePlayerPlay = createFabButton("play_arrow")
-    let scenePlayerNext = createFabButton("skip_next")
+    let scenePlayerBack = createFabButton("skip_previous");
+    let scenePlayerPlay = createFabButton("play_arrow");
+    let scenePlayerNext = createFabButton("skip_next");
 
 
     scenePlayerBack.onclick = () => {
-        sendMessageToServer(SCENE_CONTROL_TOPIC, "Previous");
+        //sendMessageToServer(SCENE_CONTROL_TOPIC, "Previous");
+        let id = "s" + (parseInt(getSelectedItemIdInList("s")[2]) - 1).toString();
+        sendMessageToServer("/Theater/Selection", id);
     };
     scenePlayerPlay.onclick = () => {
         sendMessageToServer(SCENE_CONTROL_TOPIC, "Play");
     };
     scenePlayerNext.onclick = () => {
-        sendMessageToServer(SCENE_CONTROL_TOPIC, "Next");
+        //sendMessageToServer(SCENE_CONTROL_TOPIC, "Next");
+        let id = "s" + (parseInt(getSelectedItemIdInList("s")[2]) + 1).toString();
+        sendMessageToServer("/Theater/Selection", id);
     };
 
 
@@ -507,19 +567,27 @@ function changeIconVisibility(prefix, oldIndex, newIndex, array){
 }
 
 function createMusicPlayer(){
-    let actions = createElementWithClass("musicActions", "playerActionsClass")
+    let actions = createElementWithClass("musicActions", "playerActionsClass");
 
-    let musicPlayerBack = createFabButton("skip_previous")
-    let musicPlayerShortBack = createFabButton("replay_5")
-    let musicPlayerPlay = createFabButton("play_arrow")
-    let musicPlayerShortNext = createFabButton("forward_5")
-    let musicPlayerNext = createFabButton("skip_next")
+    let musicPlayerBack = createFabButton("skip_previous");
+    let musicPlayerShortBack = createFabButton("replay_5");
+    let musicPlayerPlay = createFabButton("play_arrow");
+    let musicPlayerShortNext = createFabButton("forward_5");
+    let musicPlayerNext = createFabButton("skip_next");
 
-    musicPlayerBack.onclick = () => sendMessageToServer(SONG_CONTROL_TOPIC_FROM_UI, "PrevSong");
+    musicPlayerBack.onclick = () => {
+        const selected = getSelectedItemIdInList("m");
+        const index = selected[0] + (parseInt(selected[2]) - 1).toString();
+        sendMessageToServer("/Theater/Selection", index);
+    };
     musicPlayerShortBack.onclick = () => sendMessageToServer(SONG_CONTROL_TOPIC_FROM_UI, "RunBack");
     musicPlayerPlay.onclick = () => sendMessageToServer(SONG_CONTROL_TOPIC_FROM_UI, "Pause");
     musicPlayerShortNext.onclick = () => sendMessageToServer(SONG_CONTROL_TOPIC_FROM_UI, "RunForward");
-    musicPlayerNext.onclick = () => sendMessageToServer(SONG_CONTROL_TOPIC_FROM_UI, "NextSong");
+    musicPlayerNext.onclick = () => {
+        const selected = getSelectedItemIdInList("m");
+        const index = selected[0] + (parseInt(selected[2]) + 1).toString();
+        sendMessageToServer("/Theater/Selection", index);
+    };
 
     actions.appendChild(musicPlayerBack);
     actions.appendChild(musicPlayerShortBack);
@@ -532,4 +600,5 @@ function createMusicPlayer(){
 
 function sendMessageToServer(topic, payload){
     client.publish(topic,payload);
+    console.log(payload)
 }

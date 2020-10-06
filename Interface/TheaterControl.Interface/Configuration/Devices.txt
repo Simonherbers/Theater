@@ -1,4 +1,5 @@
-﻿lamp01
+﻿// All device names in lowercase
+lamp01
 lamp02
 lamp03
 lamp04

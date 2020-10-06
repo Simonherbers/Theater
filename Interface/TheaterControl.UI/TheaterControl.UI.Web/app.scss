@@ -28,7 +28,16 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #15bede;
 }
-
+.slider{
+  writing-mode: bt-lr; /* IE */
+  -webkit-appearance: slider-vertical; /* WebKit */
+  padding: 0 5px;
+}
+.sliderContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .containers {
   display: flex;
   flex-direction: row;
@@ -92,6 +101,9 @@
 
 .vl {
   border-left: 1px solid black;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 0;
   height: 300px;
 }
 
