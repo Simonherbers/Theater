@@ -117,21 +117,25 @@ async def cancellableTimer(seconds):
 
 def cancelTimer():
     global runningSceneTask
-    if not runningSceneTask.cancelled():
+    if runningSceneTask == None:
         runningSceneTask.cancel()
-    else:
-        runningSceneTask = None
+    runningSceneTask = None
 
 async def addSuccessCallback(task, callback, params):
     result = await task
     await callback(params)
     return result
 
-def playNextScene(currentlySelectedScene):
-    nextIndex = int(currentlySelectedScene[1:]) + 1
-    sendMessageToServer(SELECTION_TOPIC, "s" + nextIndex)
+async def playNextScene(currentlySelectedScene):
+    global scenes
+    descriptions = []
+    for d in scenes:
+        descriptions.append(d.description)
+    nextIndex = descriptions.index(currentlySelectedScene.description) + 1
+    sendMessageToServer(SELECTION_TOPIC, "s" + str(nextIndex))
     sendMessageToServer(SCENE_CONTROL_TOPIC, "Play")
-    print("callback")
+    print("next")
+    return True
 
 def stopMusic():
     global selectedScene
@@ -147,10 +151,11 @@ def playScene():
     if selectedScene.duration >= 0:
         if runningSceneTask != None:
             cancelTimer()
-        loop = asyncio.get_event_loop()
         runningSceneTask = asyncio.ensure_future(cancellableTimer(selectedScene.duration))
         runningSceneTask = addSuccessCallback(runningSceneTask, playNextScene, selectedScene)
-        loop.run_until_complete(runningSceneTask)
+        #loop = asyncio.get_event_loop()
+        #loop.run_until_complete(runningSceneTask)
+        #loop.close()
 
     for device in selectedScene.devices:
         if device.name.lower() == "music":
