@@ -1,4 +1,4 @@
-import paho.mqtt.client as mqtt, os, asyncio
+import paho.mqtt.client as mqtt, os, asyncio, time
 
 SCENE_PATH = "./Configuration/Scenes.txt"
 DEVICE_PATH = "./Configuration/Devices.txt"
@@ -30,6 +30,7 @@ selectedSong = None
 executionQueue = []
 
 runningSceneTask = None
+cancelSong = False
 
 #################
 # Reading Files #
@@ -61,7 +62,7 @@ def readScenes(allPossibleDevices):
     scenes = []
     rawSceneDescriptions = readFile(SCENE_PATH)
     for desc in rawSceneDescriptions:
-        if desc.startswith("//") or desc == "":
+        if desc.strip().startswith("//") or desc == "":
             continue
         lineElements = desc.split(';')
         sceneDescription = lineElements[0].strip()
@@ -113,7 +114,7 @@ class Device:
 ############
 
 async def cancellableTimer(seconds):
-    asyncio.sleep(seconds)
+    await asyncio.sleep(seconds)
 
 def cancelTimer():
     global runningSceneTask
@@ -121,21 +122,22 @@ def cancelTimer():
         runningSceneTask.cancel()
     runningSceneTask = None
 
-async def addSuccessCallback(task, callback, params):
-    result = await task
-    await callback(params)
-    return result
+def addSuccessCallback(task, loop, callback, params):
+    result = loop.run_until_complete(asyncio.wait(task))
+    cancelTimer()
+    stopMusic()
+    callback(params)
 
-async def playNextScene(currentlySelectedScene):
+def playNextScene():
+    global selectedScene
     global scenes
     descriptions = []
     for d in scenes:
         descriptions.append(d.description)
-    nextIndex = descriptions.index(currentlySelectedScene.description) + 1
+    nextIndex = descriptions.index(selectedScene.description) + 1
+    stopMusic()
     sendMessageToServer(SELECTION_TOPIC, "s" + str(nextIndex))
     sendMessageToServer(SCENE_CONTROL_TOPIC, "Play")
-    print("next")
-    return True
 
 def stopMusic():
     global selectedScene
@@ -146,23 +148,31 @@ def playScene():
     global selectedScene
     global selectedSong
     global runningSceneTask
+    global cancelSong
+    cancelSong = True
     stopMusic()
-
-    if selectedScene.duration >= 0:
-        if runningSceneTask != None:
-            cancelTimer()
-        runningSceneTask = asyncio.ensure_future(cancellableTimer(selectedScene.duration))
-        runningSceneTask = addSuccessCallback(runningSceneTask, playNextScene, selectedScene)
-        #loop = asyncio.get_event_loop()
-        #loop.run_until_complete(runningSceneTask)
-        #loop.close()
-
+    print("play scene " + selectedScene.description[0:4])
     for device in selectedScene.devices:
         if device.name.lower() == "music":
             selectedSong = str(device.value)
             sendMessageToServer(SONG_CONTROL_TOPIC_FROM_INTERFACE, device.value)
             continue
         sendMessageToServer(device.topic, str(device.value))
+
+    if selectedScene.duration > 0:
+        print(selectedScene.description[0:4] + " has duration " + str(selectedScene.duration))
+        cancelSong = False
+        compareTimer(selectedScene.duration)
+
+def compareTimer(duration):
+    global cancelSong
+    start = time.time()
+    timeRunning = 0
+    while timeRunning < duration and cancelSong == False:
+        timeRunning = time.time() - start
+    cancelSong = False
+    playNextScene()
+
 
 def updateUI():
     readDatafromFiles()
@@ -187,10 +197,10 @@ def changeSceneSelection(value):
         index = int(value, 10)
     except ValueError:
         return
-    scendeDescriptions = []
+    sceneDescriptions = []
     for scene in scenes:
-        scendeDescriptions.append(scene.description)
-    if index != None and index != scendeDescriptions.index(selectedScene.description) and index < len(songs) and index >= 0:
+        sceneDescriptions.append(scene.description)
+    if index != None and index != sceneDescriptions.index(selectedScene.description) and index < len(scenes) and index >= 0:
         selectedScene = scenes[index]
    
 
@@ -217,7 +227,7 @@ def selectionChanged(payload):
 
 def runSongBack():
     payload = "RunBackTime " + LENGTH_OF_TIME_SKIP
-    sendMessageToServer(SONG_CONTROL_TOPIC_FROM_INTERFACE, payload) ###############
+    sendMessageToServer(SONG_CONTROL_TOPIC_FROM_INTERFACE, payload)
 
 def pauseSong():
     global selectedSong
@@ -234,7 +244,6 @@ controls = {
     "Stop" : stopMusic,
     "Emergency" : emergencyStop,
     "RequestScenes" : updateUI,
-    #"ScenesChanged" : updateUI,
     "RunBack" : runSongBack,
     "Pause" : pauseSong,
     "RunForward" : runSongForward,
@@ -255,9 +264,6 @@ def on_message(client, userdata, msg):
     global controls
     global executionQueue
     payload = msg.payload.decode("utf-8")
-    print(payload)
-    #if payload == SCENES_CHANGED_PAYLOAD:
-    #    return
     if msg.topic == SELECTION_TOPIC:
         executionQueue.append(["SelectionChanged", payload])
         return
@@ -281,7 +287,6 @@ client.loop_start()
 def sendMessageToServer(topic, payload):
     global client
     client.publish(topic,payload)
-    print("sent " + payload)
 
 def publishScenesAndDevicesToUI():
     global scenes

@@ -1,6 +1,7 @@
 import {MDCRipple} from '@material/ripple/component'
 import {MDCTextField} from '@material/textfield';
 import {MDCDialog} from '@material/dialog';
+import {MDCSwitch} from '@material/switch';
 const dialog = new MDCDialog(document.querySelector('.mdc-dialog'));
 
 const textFields = [].map.call(document.querySelectorAll('.mdc-text-field'), function(el) {
@@ -13,6 +14,7 @@ const buttons = [].map.call(document.querySelectorAll('.mdc-icon-button'), funct
 const fabButtons = [].map.call(document.querySelectorAll('.mdc-fab'), function(el) {
     return new MDCRipple(el);
 });
+const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
 
 const REQUEST_SCENES_PAYLOAD = "RequestScenes";
 const DEVICE_TOPIC = "/Theater/Device";
@@ -38,6 +40,8 @@ let songs = [];
 
 let selectedSceneId = "si0";
 let selectedSongId = "mi0";
+
+let currentTheme = 0;
 
 let configurationButton = document.getElementById("configuration");
 configurationButton.onclick = () => dialog.open();
@@ -68,6 +72,16 @@ setInterval((topic, message) => {
     }
 }, 50);
 
+export function changeTheme(){
+    const myNode = document.querySelector('.bodyClass');
+    const isDarkTheme = myNode.classList.contains('darkTheme');
+    const removeDarkBackground = () => myNode.classList.remove('darkTheme');
+    const addDarkBackground = () => myNode.classList.add('darkTheme');
+    if (isDarkTheme) removeDarkBackground();
+    else addDarkBackground();
+    return true;
+}
+
 /**
  * Applies the incoming changes to the different lists
  *
@@ -89,6 +103,7 @@ function handleMessage(topic, fullMessage) {
             const list = createItemList(scenes, SCENE_PREFIX);
             sceneList.appendChild(list);
             changeIconVisibility(SCENE_PREFIX, 0, 0, scenes);
+            selectedSceneId = "si0";
             break;
         case SONG_TOPIC:
             songs = message;
@@ -96,6 +111,7 @@ function handleMessage(topic, fullMessage) {
             songList.innerHTML = "";
             songList.appendChild(createItemList(songs, SONG_PREFIX));
             changeIconVisibility(SONG_PREFIX, 0, 0, songs);
+            selectedSongId = "mi0";
             break;
         case DEVICE_TOPIC:
             devices = message;
@@ -478,11 +494,12 @@ function createDefaultSlider(factor, input, id){
     return slider;
 }
 
-function createFabButton(iconName){
+function createFabButton(iconName, iconReferenceId){
     let button = createElementWithClass("button", "mdc-fab fabButton");
     const div = createElementWithClass("div", "mdc-fab__ripple");
     let span = createElementWithClass("span", "mdc-fab__icons material-icons");
     span.innerHTML = iconName;
+    span.id = iconReferenceId
     button.appendChild(div);
     button.appendChild(span);
     return button;
@@ -518,12 +535,11 @@ function createScenePlayer(){
     let actions = createElementWithClass("sceneActions", "playerActionsClass");
 
     let scenePlayerBack = createFabButton("skip_previous");
-    let scenePlayerPlay = createFabButton("play_arrow");
+    let scenePlayerPlay = createFabButton("play_arrow", );
     let scenePlayerNext = createFabButton("skip_next");
 
 
     scenePlayerBack.onclick = () => {
-        //sendMessageToServer(SCENE_CONTROL_TOPIC, "Previous");
         let id = "s" + (parseInt(getSelectedItemIdInList("s")[2]) - 1).toString();
         sendMessageToServer("/Theater/Selection", id);
     };
@@ -531,7 +547,6 @@ function createScenePlayer(){
         sendMessageToServer(SCENE_CONTROL_TOPIC, "Play");
     };
     scenePlayerNext.onclick = () => {
-        //sendMessageToServer(SCENE_CONTROL_TOPIC, "Next");
         let id = "s" + (parseInt(getSelectedItemIdInList("s")[2]) + 1).toString();
         sendMessageToServer("/Theater/Selection", id);
     };
@@ -571,7 +586,7 @@ function createMusicPlayer(){
 
     let musicPlayerBack = createFabButton("skip_previous");
     let musicPlayerShortBack = createFabButton("replay_5");
-    let musicPlayerPlay = createFabButton("play_arrow");
+    let musicPlayerPlay = createFabButton("play_arrow", "musicPlayerPlayPause");
     let musicPlayerShortNext = createFabButton("forward_5");
     let musicPlayerNext = createFabButton("skip_next");
 
@@ -581,7 +596,13 @@ function createMusicPlayer(){
         sendMessageToServer("/Theater/Selection", index);
     };
     musicPlayerShortBack.onclick = () => sendMessageToServer(SONG_CONTROL_TOPIC_FROM_UI, "RunBack");
-    musicPlayerPlay.onclick = () => sendMessageToServer(SONG_CONTROL_TOPIC_FROM_UI, "Pause");
+    musicPlayerPlay.onclick = () => {
+        sendMessageToServer(SONG_CONTROL_TOPIC_FROM_UI, "Pause");
+        document.getElementById("musicPlayerPlayPause").innerHTML =
+            document.getElementById("musicPlayerPlayPause").innerHTML === "pause"
+                ? "play_arrow"
+                : "pause";
+    };
     musicPlayerShortNext.onclick = () => sendMessageToServer(SONG_CONTROL_TOPIC_FROM_UI, "RunForward");
     musicPlayerNext.onclick = () => {
         const selected = getSelectedItemIdInList("m");
