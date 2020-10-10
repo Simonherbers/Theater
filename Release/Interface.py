@@ -47,6 +47,8 @@ def readFile(path):
     lines = file.readlines()
     stripped = []
     for line in lines:
+        if line.strip().startswith("//"):
+            continue
         stripped.append(line.strip())
     file.close()
     return stripped
@@ -62,10 +64,9 @@ def readScenes(allPossibleDevices):
     scenes = []
     rawSceneDescriptions = readFile(SCENE_PATH)
     for desc in rawSceneDescriptions:
-        if desc.strip().startswith("//") or desc == "":
-            continue
         lineElements = desc.split(';')
         sceneDescription = lineElements[0].strip()
+        lineElements = lineElements[1:]
         devicesOfScene = []
         duration = -1
         for d in lineElements:

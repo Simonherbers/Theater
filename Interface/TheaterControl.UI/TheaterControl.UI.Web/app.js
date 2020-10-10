@@ -131,7 +131,7 @@ function handleMessage(topic, fullMessage) {
             break;
 
         default:
-            const device = topic.substring(9);
+            const device = topic.substring(9); // base_topic = /Theater/
             const res = devices.find(x => x === device);
             if(res !== undefined){
                 changeElementValue(res, message[0]);
@@ -235,7 +235,6 @@ function reOrderElements(first, second, third){
 
 function createItemList(array, prefix){
     let card = createElementWithClass("div", "mdc-card--outlined cardClass outerCard");
-
     let list = prefix === DEVICE_PREFIX ? makeDeviceList(array) : makeUL(array, prefix);
     let actions = prefix === "s" ? createScenePlayer() : prefix === SONG_PREFIX ? createMusicPlayer() : document.createElement("div");
     const text = prefix === "s" ? "Scenes" : prefix === SONG_PREFIX ? "Songs" : "Devices";
@@ -269,11 +268,10 @@ function createItemList(array, prefix){
  */
 function makeDeviceList(array) {
     let devicePanel = createElementWithClass("div", "sliderContainer");
-
-    let master = createElementWithClass("div", "");
+    let master = createElementWithClass("div", "deviceBox container");
 
     let masterLabel = document.createTextNode("Master");
-    masterLabel = encapsulateElementInNewElement(masterLabel, "h1", "mdc-typography--headline4");
+    masterLabel = encapsulateElementInNewElement(masterLabel, "h1", "mdc-typography--headline5");
     masterLabel = encapsulateElementInNewElement(masterLabel, "div", "container-title");
 
     master.appendChild(masterLabel);
@@ -285,19 +283,21 @@ function makeDeviceList(array) {
     master.appendChild(masterSlider);
     devicePanel.appendChild(master);
 
-    let divider = createHorizontalDivider(0.5);
+    let divider = createElementWithClass("div", "verticalDivider")
     devicePanel.appendChild(divider);
 
     let container = createElementWithClass("div", "");
     let count = 0;
 
-    const rows = Math.round(array.length / DEVICE_LIST_ROW_LENGTH);
+    const rows = Math.ceil(array.length / DEVICE_LIST_ROW_LENGTH);
+
     for (let i = 0; i < rows; i++) {
 
         let row = createElementWithClass("div", "containers");
 
         for (let j = 0; j < DEVICE_LIST_ROW_LENGTH; j++) {
-            let container = createElementWithClass("div", "container");
+
+            let container = createElementWithClass("div", "deviceBox container");
             const width = Math.floor(100 / DEVICE_LIST_ROW_LENGTH);
             container.style.width = width + "%";
             if(array[count] !== undefined){
@@ -305,37 +305,17 @@ function makeDeviceList(array) {
                 //device name
                 let deviceName = array[count]
                 let text = document.createTextNode(deviceName);
-                text = encapsulateElementInNewElement(text, "h1", "mdc-typography--headline4");
-                text = encapsulateElementInNewElement(text, "span", "container-title");
-                //tooltip?
-
+                text = encapsulateElementInNewElement(text, "h1", "mdc-typography--headline5");
+                text = encapsulateElementInNewElement(text, "div", "container-title");
+                text.title = deviceName
                 //outlined text field
                 const index = j + i * DEVICE_LIST_ROW_LENGTH;
                 let label = createInputField("my-label-id-" + index, deviceName);
-                //let input = document.getElementById("my-label-id-" + index);
 
                 //control buttons
-                let controls = createElementWithClass("div", "container-controls");
-
-                //let increaseButton = createFabButton("expand_less");
-                //let decreaseButton = createFabButton("expand_more");
-
-
-                //let func = param => {
-                //    const value = (parseInt(label.value) + DEVICE_LIST_CONTROL_ONCLICK_VALUE_CHANGE * param).toString();
-                //    sendMessageToServer("/Theater/" + array[index], value);
-                //    return value;
-                //};
-
-                //holdButton(increaseButton, () => func(1), 600, 1.2);
-                //holdButton(decreaseButton, () => func(-1), 600, 1.2);
-
-                //controls.appendChild(increaseButton);
-                //controls.appendChild(decreaseButton);
-                controls.appendChild(createDefaultSlider(0.1, label, array[index]));
                 container.appendChild(text);
                 container.appendChild(label);
-                container.appendChild(controls);
+                container.appendChild(createDefaultSlider(0.1, label, array[index], deviceName));
             }
             count++;
 
@@ -343,7 +323,7 @@ function makeDeviceList(array) {
 
             if(count !== (DEVICE_LIST_ROW_LENGTH * (i + 1)))
             {
-                let divider = createHorizontalDivider(0.2);
+                let divider = createElementWithClass("div", "verticalDivider")
                 row.appendChild(divider);
             }
         }
@@ -358,15 +338,7 @@ function makeDeviceList(array) {
 
     return devicePanel;
 }
-function createHorizontalDivider(factor){
-    let divider = document.createElement("div");
-    divider.style.borderLeft = "1px solid black";
-    //divider.style.height = height + "px";
-    divider.style.height = "-webkit-fill-available";
-    divider.style.maxHeight = (screen.availWidth * factor).toString() + "px";
 
-    return divider;
-}
 function createInputField(id, name){
     let label = createElementWithClass("label", "mdc-text-field mdc-text-field--outlined");
     let inp = createElementWithClass("input", "mdc-text-field__input");
@@ -388,34 +360,7 @@ function createInputField(id, name){
     label.appendChild(notchedOutline);
     return label;
 }
-function holdButton(btn, action, start, speedup) {
-    const initialStartValue = start;
-    let inpValue;
-    let t;
-    let repeat = function () {
-        inpValue = action();
-        if(inpValue > 100 || inpValue < 0){
-          return;
-        }
-        t = setTimeout(repeat, start);
-        if(start > 50){
-            start = start / speedup;
-        }
-        else{
-            start = 50;
-        }
-        return t;
-    };
 
-    btn.onmousedown = function() {
-        t = repeat();
-    };
-
-    btn.onmouseup = function () {
-        clearTimeout(t);
-        start = initialStartValue;
-    }
-}
 function changeElementValue(name, value){
     value = parseInt(value);
     let elements = document.getElementsByName(name);
@@ -429,57 +374,15 @@ function encapsulateElementInNewElement(element, newElement, className){
     div.appendChild(element);
     return div;
 }
-function createSlider(){
-    let slider = createElementWithClass("div", "mdc-slider mdc-slider--discrete");
-    slider.role = "slider";
-    slider.tabIndex = "0";
-    slider.setAttribute("aria-label", "Intensity");
-    slider.setAttribute("aria-valuemin", "0");
-    slider.setAttribute("aria-valuemax", "255");
-    slider.setAttribute("aria-valuenow", "0");
-
-    let trackContainer = createElementWithClass("div", "mdc-slider__track-container");
-
-    let thumbContainer = createElementWithClass("div", "mdc-slider__thumb-container");
-
-    let pin = createElementWithClass("div", "mdc-slider__pin");
-
-    let thumb = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    thumb.setAttribute("class", "mdc-slider__thumb");
-    thumb.setAttribute("width", "21");
-    thumb.setAttribute("height", "21");
-
-    let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("cx", "10.5");
-    circle.setAttribute("cy", "10.5");
-    circle.setAttribute("r", "7.875");
 
 
-    let focusRing = createElementWithClass("div", "mdc-slider__focus-ring");
-
-    trackContainer.appendChild(createElementWithClass("div", "mdc-slider__track"));
-    pin.appendChild(createElementWithClass("span", "mdc-slider__pin-value-marker"));
-    thumbContainer.appendChild(pin);
-    thumb.appendChild(circle);
-    thumbContainer.appendChild(thumb);
-    thumbContainer.appendChild(focusRing);
-
-    slider.appendChild(trackContainer);
-    slider.appendChild(thumbContainer);
-    return slider;
-}
-
-function createDefaultSlider(factor, input, id){
+function createDefaultSlider(factor, input, id, deviceName){
     let slider = createElementWithClass("INPUT", "slider" );
     slider.setAttribute("type", "range");
     slider.orientation = "vertical";
-    //slider.style.height = (parseInt(height.toString().substring(0, height.toString() - (height.toString()[height.toString().length - 1] === "%" ? 1 : 2))) * 0.45).toString() + "px";
-    slider.style.height = "-webkit-fill-available";
-    slider.style.maxHeight = (screen.availWidth * factor).toString() + "px";
-    //slider.style.height = "100%";
-    //slider.style.maxHeight = (screen.availWidth * 0.1).toString() + "px";
     slider.min = 0;
     slider.max = 100;
+    slider.name = deviceName;
     slider.setAttribute("value","0");
     let newid = "slider" + id;
     slider.setAttribute("id", newid);
@@ -490,7 +393,6 @@ function createDefaultSlider(factor, input, id){
     };
 
     slider = encapsulateElementInNewElement(slider, "div", "sliderContainer");
-    //slider.style.height = (parseInt(height.toString().substring(0, height.toString() - (height.toString()[height.toString().length - 1] === "%" ? 1 : 2))) * 0.45).toString() + "px";
     return slider;
 }
 
