@@ -1,5 +1,5 @@
 ﻿// All device names in lowercase
-lamp01
+lamp01; A001
 lamp02
 lamp03
 music

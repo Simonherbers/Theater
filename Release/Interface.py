@@ -54,7 +54,21 @@ def readFile(path):
     return stripped
 
 def readDevices():
-    return readFile(DEVICE_PATH)
+    devices = []
+    ids = []
+    rawLines = readFile(DEVICE_PATH)
+    for line in rawLines:
+        elements = line.split(";")
+        id = 1
+        if len(elements) == 1:
+            while id in ids:
+                    id = id + 1
+        else:
+            id = int(elements[1].strip()[1:])
+        ids.append(id)
+        devices.append(Device(elements[0].lower(), id))
+    return devices
+
 
 def readSongs():
     filenames = os.listdir(SONG_PATH)
@@ -71,10 +85,12 @@ def readScenes(allPossibleDevices):
         duration = -1
         for d in lineElements:
             nameValuePair = d.strip().split(' ')
-            if nameValuePair[0].lower() in allPossibleDevices:
-                devicesOfScene.append(Device(nameValuePair[0], nameValuePair[1]))
-            if nameValuePair[0].lower().startswith(KEYWORD_DURATION):
-                duration = nameValuePair[1]
+            for device in allPossibleDevices:
+                if nameValuePair[0].lower() == device.name:
+                    device.value = nameValuePair[1]
+                    devicesOfScene.append(device)
+                if nameValuePair[0].lower().startswith(KEYWORD_DURATION):
+                    duration = nameValuePair[1]
         scene = Scene(sceneDescription, devicesOfScene)
         scene.duration = int(duration)
         scenes.append(scene)
@@ -100,15 +116,16 @@ def readDatafromFiles():
 
 class Scene:
     duration = -1
+    value = 0
     def __init__(self, description, devices):
         self.description = description
         self.devices = devices
 
 class Device:
-    def __init__(self, name, value):
+    def __init__(self, name, id):
         self.name = name
-        self.value = value
-        self.topic = TOPIC_BASE + name
+        self.id = id
+        self.topic = TOPIC_BASE + "lamp" + str(id)
 
 ############
 # Controls #
@@ -296,10 +313,13 @@ def publishScenesAndDevicesToUI():
     global songs
 
     sceneDescriptions = []
+    deviceNames = []
     for scene in scenes:
         sceneDescriptions.append(scene.description)
+    for device in devices:
+        deviceNames.append(device.name)
     sceneMessage = ";;;".join(sceneDescriptions)
-    deviceMessage = ";;;".join(devices)
+    deviceMessage = ";;;".join(deviceNames)
     songMessage = ";;;".join(songs)
 
     sendMessageToServer(SCENE_CONFIGURATION_TOPIC, sceneMessage)
