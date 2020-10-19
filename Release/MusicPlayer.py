@@ -28,14 +28,15 @@ def playSong(songName):
         player = vlc.MediaPlayer(path)
         player.play()
         runningSong = songName
-    except:
-        pass
+    except OSError as error:
+        print(error)
+        
 
 def HandleSongControl(value):
     global player
     values = str(value).split()
     if values[0] == STOP_PAYLOAD:
-        if player != None:
+        if player != None and player.is_playing:
             player.pause()
         return
     
@@ -58,7 +59,7 @@ def HandleSongControl(value):
             player.set_time(int(toRun))
         return
     
-    if values[0] == runningSong:
+    if values[0] == runningSong and player.is_playing:
         player.pause()
     else:
         playSong(values[0])
@@ -73,20 +74,13 @@ def WorkQueue():
         if message[0] == SONG_CONTROL_TOPIC_FROM_INTERFACE:
             HandleSongControl(message[1])
             continue
-
-        #if message[1] == STOP_PAYLOAD:
-        #    if player is not None and player.is_playing:
-        #        player.stop()
-       # else:
-        #    playSong(message[1])
-
-
         
 
 client = mqtt.Client()
 
 client.on_message = on_message
 client.on_connect = on_connect
+client.on_disconnect = print("disconnected")
 
 client.connect("localhost", 1883, 60)
 

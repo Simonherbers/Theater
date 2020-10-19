@@ -18,7 +18,7 @@ DEVICE_OFF_PAYLOAD = "0"
 SERVER_ADDRESS = "localhost"
 
 LENGTH_OF_TIME_SKIP = "10"
-KEYWORD_DURATION = "Duration"
+KEYWORD_DURATION = "duration"
 
 scenes = []
 devices = []
@@ -73,7 +73,7 @@ def readScenes(allPossibleDevices):
             nameValuePair = d.strip().split(' ')
             if nameValuePair[0].lower() in allPossibleDevices:
                 devicesOfScene.append(Device(nameValuePair[0], nameValuePair[1]))
-            if nameValuePair[0].startswith(KEYWORD_DURATION):
+            if nameValuePair[0].lower().startswith(KEYWORD_DURATION):
                 duration = nameValuePair[1]
         scene = Scene(sceneDescription, devicesOfScene)
         scene.duration = int(duration)
@@ -124,7 +124,7 @@ def cancelTimer():
     runningSceneTask = None
 
 def addSuccessCallback(task, loop, callback, params):
-    result = loop.run_until_complete(asyncio.wait(task))
+    loop.run_until_complete(asyncio.wait(task))
     cancelTimer()
     stopMusic()
     callback(params)
@@ -135,10 +135,11 @@ def playNextScene():
     descriptions = []
     for d in scenes:
         descriptions.append(d.description)
-    nextIndex = descriptions.index(selectedScene.description) + 1
-    stopMusic()
-    sendMessageToServer(SELECTION_TOPIC, "s" + str(nextIndex))
-    sendMessageToServer(SCENE_CONTROL_TOPIC, "Play")
+    currentSceneIndex = descriptions.index(selectedScene.description) 
+    nextIndex =  currentSceneIndex + 1
+    if nextIndex < len(scenes) :
+        sendMessageToServer(SELECTION_TOPIC, "s" + str(nextIndex))
+        sendMessageToServer(SCENE_CONTROL_TOPIC, "Play")
 
 def stopMusic():
     global selectedScene
@@ -151,17 +152,15 @@ def playScene():
     global runningSceneTask
     global cancelSong
     cancelSong = True
-    stopMusic()
-    print("play scene " + selectedScene.description[0:4])
     for device in selectedScene.devices:
         if device.name.lower() == "music":
             selectedSong = str(device.value)
+            stopMusic()
             sendMessageToServer(SONG_CONTROL_TOPIC_FROM_INTERFACE, device.value)
             continue
         sendMessageToServer(device.topic, str(device.value))
 
     if selectedScene.duration > 0:
-        print(selectedScene.description[0:4] + " has duration " + str(selectedScene.duration))
         cancelSong = False
         compareTimer(selectedScene.duration)
 
@@ -169,9 +168,11 @@ def compareTimer(duration):
     global cancelSong
     start = time.time()
     timeRunning = 0
-    while timeRunning < duration and cancelSong == False:
+    while timeRunning < duration:
+        if cancelSong == True:
+            cancelSong = False
+            return
         timeRunning = time.time() - start
-    cancelSong = False
     playNextScene()
 
 
