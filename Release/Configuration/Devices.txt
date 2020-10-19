@@ -1,0 +1,14 @@
+﻿// All device names in lowercase
+lamp01; A001
+lamp02
+lamp03
+music
+a
+b
+c
+d
+e
+f
+g
+h
+i

@@ -1,0 +1,5 @@
+﻿// ID Teil von Beschreibung; Geräte; Musik; Dauer (0 = unendlich);
+01 Beschreibung01; lamp01 100; lamp02 40; lamp03 100; music summer.mp3;
+02 Beschr; lamp01 0; lamp02 100; music 0;
+03 B; lamp01 100;duration 10;music sample.mp3
+04 hi; music 0

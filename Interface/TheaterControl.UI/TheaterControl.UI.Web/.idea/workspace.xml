@@ -2,138 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2fdb860a-13aa-41c5-bb6d-a1a04027150e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/.vs/TheaterControl.Interface/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/.vs/TheaterControl.Interface/v16/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/Configuration/Devices.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/Configuration/Devices.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/Configuration/Scenes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/Configuration/Scenes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/Constants/Payloads.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/Constants/Payloads.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/Helper/SceneReporter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/Helper/SceneReporter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/Models/SongControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/Models/SongControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/ViewModels/ConfigurationViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/ViewModels/ConfigurationViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/bin/Debug/TheaterControl.Interface.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/bin/Debug/TheaterControl.Interface.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/bin/Debug/TheaterControl.Interface.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/bin/Debug/TheaterControl.Interface.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.csprojAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.g.resources" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.g.resources" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../TheaterControl.Interface/obj/Debug/TheaterControl.Interface.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@material/button/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@material/button/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@material/dialog/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@material/dialog/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@material/fab/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@material/fab/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@material/icon-button/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@material/icon-button/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@material/textfield/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@material/textfield/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@material/theme/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@material/theme/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_functions.import.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_functions.import.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_functions.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_functions.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_keyframes.import.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_keyframes.import.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_keyframes.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_keyframes.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_mixins.import.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_mixins.import.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_variables.import.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_variables.import.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/adapter.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/adapter.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/adapter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/adapter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/component.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/component.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/constants.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/constants.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/dist/mdc.checkbox.css" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/dist/mdc.checkbox.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/dist/mdc.checkbox.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/dist/mdc.checkbox.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/dist/mdc.checkbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/dist/mdc.checkbox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/dist/mdc.checkbox.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/dist/mdc.checkbox.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/foundation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/foundation.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/foundation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/foundation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/mdc-checkbox.import.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/mdc-checkbox.import.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/mdc-checkbox.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/mdc-checkbox.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/checkbox/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_data-table-pagination.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_data-table-pagination.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_data-table-theme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_data-table-theme.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_data-table.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_data-table.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_mixins.import.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_mixins.import.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_variables.import.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_variables.import.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/adapter.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/adapter.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/adapter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/adapter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/component.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/component.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/constants.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/constants.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/dist/mdc.data-table.css" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/dist/mdc.data-table.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/dist/mdc.data-table.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/dist/mdc.data-table.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/dist/mdc.dataTable.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/dist/mdc.dataTable.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/dist/mdc.dataTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/dist/mdc.dataTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/foundation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/foundation.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/foundation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/foundation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/mdc-data-table.import.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/mdc-data-table.import.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/mdc-data-table.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/mdc-data-table.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/types.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/types.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/data-table/types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_keyframes.import.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_keyframes.import.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_keyframes.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_keyframes.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_mixins.import.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_mixins.import.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_variables.import.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_variables.import.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/adapter.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/adapter.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/adapter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/adapter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/component.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/component.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/constants.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/constants.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/dist/mdc.slider.css" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/dist/mdc.slider.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/dist/mdc.slider.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/dist/mdc.slider.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/dist/mdc.slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/dist/mdc.slider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/dist/mdc.slider.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/dist/mdc.slider.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/foundation.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/foundation.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/foundation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/foundation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/mdc-slider.import.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/mdc-slider.import.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/mdc-slider.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/mdc-slider.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/@material/slider/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/changelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/changelog.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/glob.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/glob.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/glob/sync.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/dist/material-components-web.css" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/dist/material-components-web.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/dist/material-components-web.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/dist/material-components-web.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/dist/material-components-web.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/dist/material-components-web.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/dist/material-components-web.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/dist/material-components-web.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/material-components-web.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/material-components-web.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/node_modules/material-components-web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/src/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/src/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheaterControl.Web/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../TheaterControl.Web/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +22,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Release/TheaterControl.UI.Web" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -182,6 +51,9 @@
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="2fdb860a-13aa-41c5-bb6d-a1a04027150e" name="Default Changelist" comment="" />
@@ -195,7 +67,9 @@
       <workItem from="1600406336884" duration="17481000" />
       <workItem from="1600675974481" duration="22045000" />
       <workItem from="1600755848156" duration="15038000" />
-      <workItem from="1600928327592" duration="1728000" />
+      <workItem from="1600928327592" duration="2493000" />
+      <workItem from="1601974454306" duration="9255000" />
+      <workItem from="1602360413047" duration="3996000" />
     </task>
     <servers />
   </component>
@@ -211,78 +85,130 @@
       <screen x="1920" y="0" width="1920" height="1042" />
     </state>
     <state x="2549" y="303" key="EditFileWatcherDialog/1920.0.1920.1042/0.0.1536.834@1920.0.1920.1042" timestamp="1600679875598" />
-    <state width="1899" height="352" key="GridCell.Tab.0.bottom" timestamp="1600775735827">
+    <state x="-1180" y="279" key="FileChooserDialogImpl" timestamp="1602151931927">
+      <screen x="-1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="-1180" y="279" key="FileChooserDialogImpl/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1602151931927" />
+    <state width="1899" height="285" key="GridCell.Tab.0.bottom" timestamp="1603115996147">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="285" key="GridCell.Tab.0.bottom/-1920.0.1536.840/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1603115996147" />
+    <state width="1515" height="128" key="GridCell.Tab.0.bottom/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1600956955778" />
+    <state width="1515" height="88" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602364330479" />
     <state width="1899" height="352" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032256" />
+    <state width="1899" height="129" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1602151933142" />
+    <state width="1899" height="352" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394169" />
+    <state width="1899" height="129" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.-1080.1920.1050/0.-1080.1920.1050@0.-1080.1920.1050" timestamp="1601278878762" />
     <state width="1899" height="133" key="GridCell.Tab.0.bottom/1920.0.1920.1042/0.0.1536.834@1920.0.1920.1042" timestamp="1600688764286" />
     <state width="1899" height="352" key="GridCell.Tab.0.bottom/1920.0.1920.1050/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600775735827" />
-    <state width="1899" height="352" key="GridCell.Tab.0.center" timestamp="1600775735826">
+    <state width="1899" height="285" key="GridCell.Tab.0.center" timestamp="1603115996146">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="285" key="GridCell.Tab.0.center/-1920.0.1536.840/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1603115996146" />
+    <state width="1515" height="128" key="GridCell.Tab.0.center/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1600956955778" />
+    <state width="1515" height="88" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1602364330479" />
     <state width="1899" height="352" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032256" />
+    <state width="1899" height="129" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1602151933142" />
+    <state width="1899" height="352" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394168" />
+    <state width="1899" height="129" key="GridCell.Tab.0.center/0.0.1920.1050/1920.-1080.1920.1050/0.-1080.1920.1050@0.-1080.1920.1050" timestamp="1601278878761" />
     <state width="1899" height="133" key="GridCell.Tab.0.center/1920.0.1920.1042/0.0.1536.834@1920.0.1920.1042" timestamp="1600688764285" />
     <state width="1899" height="352" key="GridCell.Tab.0.center/1920.0.1920.1050/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600775735826" />
-    <state width="1899" height="352" key="GridCell.Tab.0.left" timestamp="1600775735826">
+    <state width="1899" height="285" key="GridCell.Tab.0.left" timestamp="1603115996146">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="285" key="GridCell.Tab.0.left/-1920.0.1536.840/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1603115996146" />
+    <state width="1515" height="128" key="GridCell.Tab.0.left/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1600956955777" />
+    <state width="1515" height="88" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1602364330479" />
     <state width="1899" height="352" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032256" />
+    <state width="1899" height="129" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1602151933142" />
+    <state width="1899" height="352" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394166" />
+    <state width="1899" height="129" key="GridCell.Tab.0.left/0.0.1920.1050/1920.-1080.1920.1050/0.-1080.1920.1050@0.-1080.1920.1050" timestamp="1601278878761" />
     <state width="1899" height="133" key="GridCell.Tab.0.left/1920.0.1920.1042/0.0.1536.834@1920.0.1920.1042" timestamp="1600688764285" />
     <state width="1899" height="352" key="GridCell.Tab.0.left/1920.0.1920.1050/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600775735826" />
-    <state width="1899" height="352" key="GridCell.Tab.0.right" timestamp="1600775735826">
+    <state width="1899" height="285" key="GridCell.Tab.0.right" timestamp="1603115996147">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1899" height="285" key="GridCell.Tab.0.right/-1920.0.1536.840/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1603115996147" />
+    <state width="1515" height="128" key="GridCell.Tab.0.right/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1600956955778" />
+    <state width="1515" height="88" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1602364330479" />
     <state width="1899" height="352" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032256" />
+    <state width="1899" height="129" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1602151933142" />
+    <state width="1899" height="352" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394168" />
+    <state width="1899" height="129" key="GridCell.Tab.0.right/0.0.1920.1050/1920.-1080.1920.1050/0.-1080.1920.1050@0.-1080.1920.1050" timestamp="1601278878761" />
     <state width="1899" height="133" key="GridCell.Tab.0.right/1920.0.1920.1042/0.0.1536.834@1920.0.1920.1042" timestamp="1600688764286" />
     <state width="1899" height="352" key="GridCell.Tab.0.right/1920.0.1920.1050/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600775735826" />
-    <state width="1899" height="352" key="GridCell.Tab.1.bottom" timestamp="1600355032257">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1515" height="88" key="GridCell.Tab.1.bottom" timestamp="1602364330483">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="88" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602364330483" />
     <state width="1899" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032257" />
-    <state width="1899" height="352" key="GridCell.Tab.1.center" timestamp="1600355032256">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1899" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394171" />
+    <state width="1515" height="88" key="GridCell.Tab.1.center" timestamp="1602364330483">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="88" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1602364330483" />
     <state width="1899" height="352" key="GridCell.Tab.1.center/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032256" />
-    <state width="1899" height="352" key="GridCell.Tab.1.left" timestamp="1600355032256">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1899" height="352" key="GridCell.Tab.1.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394169" />
+    <state width="1515" height="88" key="GridCell.Tab.1.left" timestamp="1602364330483">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="88" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1602364330483" />
     <state width="1899" height="352" key="GridCell.Tab.1.left/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032256" />
-    <state width="1899" height="352" key="GridCell.Tab.1.right" timestamp="1600355032257">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1899" height="352" key="GridCell.Tab.1.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394169" />
+    <state width="1515" height="88" key="GridCell.Tab.1.right" timestamp="1602364330483">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="88" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1602364330483" />
     <state width="1899" height="352" key="GridCell.Tab.1.right/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032257" />
-    <state width="1899" height="352" key="GridCell.Tab.2.bottom" timestamp="1600355032257">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1899" height="352" key="GridCell.Tab.1.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394171" />
+    <state width="1515" height="88" key="GridCell.Tab.2.bottom" timestamp="1602364330483">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="88" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602364330483" />
     <state width="1899" height="352" key="GridCell.Tab.2.bottom/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032257" />
-    <state width="1899" height="352" key="GridCell.Tab.2.center" timestamp="1600355032257">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1899" height="352" key="GridCell.Tab.2.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394176" />
+    <state width="1515" height="88" key="GridCell.Tab.2.center" timestamp="1602364330483">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="88" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1602364330483" />
     <state width="1899" height="352" key="GridCell.Tab.2.center/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032257" />
-    <state width="1899" height="352" key="GridCell.Tab.2.left" timestamp="1600355032257">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1899" height="352" key="GridCell.Tab.2.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394175" />
+    <state width="1515" height="88" key="GridCell.Tab.2.left" timestamp="1602364330483">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="88" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1602364330483" />
     <state width="1899" height="352" key="GridCell.Tab.2.left/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032257" />
-    <state width="1899" height="352" key="GridCell.Tab.2.right" timestamp="1600355032257">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1899" height="352" key="GridCell.Tab.2.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394173" />
+    <state width="1515" height="88" key="GridCell.Tab.2.right" timestamp="1602364330483">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="88" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1602364330483" />
     <state width="1899" height="352" key="GridCell.Tab.2.right/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032257" />
-    <state width="1899" height="352" key="GridCell.Tab.3.bottom" timestamp="1600355032257">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1899" height="352" key="GridCell.Tab.2.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394176" />
+    <state width="1515" height="88" key="GridCell.Tab.3.bottom" timestamp="1602364330483">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="88" key="GridCell.Tab.3.bottom/0.0.1536.834@0.0.1536.834" timestamp="1602364330483" />
     <state width="1899" height="352" key="GridCell.Tab.3.bottom/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032257" />
-    <state width="1899" height="352" key="GridCell.Tab.3.center" timestamp="1600355032257">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1899" height="352" key="GridCell.Tab.3.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394177" />
+    <state width="1515" height="88" key="GridCell.Tab.3.center" timestamp="1602364330483">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="88" key="GridCell.Tab.3.center/0.0.1536.834@0.0.1536.834" timestamp="1602364330483" />
     <state width="1899" height="352" key="GridCell.Tab.3.center/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032257" />
-    <state width="1899" height="352" key="GridCell.Tab.3.left" timestamp="1600355032257">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1899" height="352" key="GridCell.Tab.3.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394177" />
+    <state width="1515" height="88" key="GridCell.Tab.3.left" timestamp="1602364330483">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="88" key="GridCell.Tab.3.left/0.0.1536.834@0.0.1536.834" timestamp="1602364330483" />
     <state width="1899" height="352" key="GridCell.Tab.3.left/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032257" />
-    <state width="1899" height="352" key="GridCell.Tab.3.right" timestamp="1600355032257">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1899" height="352" key="GridCell.Tab.3.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394176" />
+    <state width="1515" height="88" key="GridCell.Tab.3.right" timestamp="1602364330483">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
+    <state width="1515" height="88" key="GridCell.Tab.3.right/0.0.1536.834@0.0.1536.834" timestamp="1602364330483" />
     <state width="1899" height="352" key="GridCell.Tab.3.right/0.0.1920.1050/-1920.0.1536.834@0.0.1920.1050" timestamp="1600355032257" />
+    <state width="1899" height="352" key="GridCell.Tab.3.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1601974394177" />
     <state x="2381" y="169" key="SettingsEditor" timestamp="1600689141927">
       <screen x="1920" y="0" width="1920" height="1042" />
     </state>
