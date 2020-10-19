@@ -2,6 +2,7 @@
 lamp01
 lamp02
 lamp03
+music
 a
 b
 c
