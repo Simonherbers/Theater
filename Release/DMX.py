@@ -34,7 +34,13 @@ class OpenDmxUsb():
     #Initialize the controller
     def _init_dmx(self):
         self.ftdi=ftdi.Ftdi()
-        self.ftdi.open(vendor,product,0)
+        try:
+            self.ftdi.open(vendor,product,0)
+        except OSError:
+            print("Device not found.")
+            input()
+            exit()
+        
         if self.ftdi.is_connected:
             print("ftdi connected")
         else:
