@@ -12,11 +12,11 @@ topicTemplateCount = 9 # /Theater/
 # Device
 ########
 class Device():
-    def __init__(self, rawData):
+    def __init__(self, rawData, id):
         self.name = rawData
-        self.id = int(rawData[len(rawData) - 2: len(rawData)])
+        self.id = id
         self.deviceType = rawData[0 : len(rawData) - 3]
-        self.topic = "/Theater/" + rawData
+        self.topic = "/Theater/" + "lamp" + str(id)
 
 ####################
 # DMX USB controller
@@ -75,13 +75,24 @@ dmx = OpenDmxUsb()
 ########################
 # Read available Devices
 ########################
-path = "Devices.txt"
+path = "./Configuration/Devices.txt"
 #path = "..\Interface\TheaterControl.Interface\Configuration\Devices.txt"
-file = open(path, "r")
+file = open(path, encoding='utf-8-sig')
 lines = file.readlines()
 devices = []
+ids = []
 for line in lines:
-    devices.append(Device(line.strip().lower()))
+    if line.strip().startswith("//"):
+        continue
+    elements = line.split(";")
+    id = 1
+    if len(elements) == 1:
+        while id in ids:
+            id = id + 1
+    else:
+        id = int(elements[1].strip()[1:])
+    ids.append(id)
+    devices.append(Device(elements[0].strip().lower(), id))
 
 # Initial data
 
